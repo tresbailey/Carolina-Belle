@@ -1,17 +1,20 @@
 {% load pages_tags i18n future mathfilters %}
 
 {% spaceless %}
-<nav class="navbar navbar-light navbar-bottom">
-    <ul id="primary-menu" class="nav navbar-nav">
+<nav class="link-lockup">
         {% for page in page_branch %}
         {% if page.in_menu %}
-        <li id="primary-menu-{{ page.html_id }}"
-            class="nav-item {% if page.is_current_or_ascendant %}active{% endif %}{% if forloop.counter > page_branch|length|div:2 %} pull-right{% endif %}">
+        {% if forloop.counter > 1 %}
+        <li class="lockup-link-item divider-vertical"></li>
+        {% endif %}
+        <div id="primary-menu-{{ page.html_id }}"
+            class="navbar-item lockup-link-item 
+{% if page.is_current_or_ascendant %}active{% endif %}">
+
             <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-        </li>
+{{ page.children_in_menu }}
+        </div>
         {% endif %}
         {% endfor %}
-        <li class="divider-vertical"></li>
-    </ul>
 </nav>
 {% endspaceless %}

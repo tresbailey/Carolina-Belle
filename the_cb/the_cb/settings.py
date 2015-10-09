@@ -66,17 +66,25 @@ from django.utils.translation import ugettext_lazy as _
 SHOP_OPTION_TYPE_CHOICES = (
      (1, "Girl's Size"),
      (2, "Boy's Size"),
-     (3, "Fabric Color"),
+     (3, "Gown Color"),
      (4, "Thread Color"),
      (5, "Font"),
      (6, "Monogram Size"),
-     (7, "Monogram Type")
+     (7, "Monogram Type"),
+     (8, "Blanket Type"),
+     (9, "Pajama Size"),
+     (10, "Hat Color"),
+     (11, "Applique Fabric Counts"),
+     (12, "Boxer Sizes"),
+     (13, "Linen Bib Fabric"),
+     (14, "Bloomer Sizes"),
+     (15, "College Bloomer Teams")
  )
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
 # eg for "Colour" then "Size" given the above:
-SHOP_OPTION_ADMIN_ORDER = (1, 2, 3, 4, 5, 6, 7)
+SHOP_OPTION_ADMIN_ORDER = range(1,15)
 
 
 ######################
@@ -366,6 +374,9 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
+
+SHOP_USE_RATINGS=False
+SHOP_USE_WISHLIST=False
 
 ##################
 # LOCAL SETTINGS #

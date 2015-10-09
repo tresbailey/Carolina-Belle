@@ -15,9 +15,9 @@
     {% endifinstalled %}
 
     {% compress css %}
-        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
         <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
-        <link rel="stylesheet" href="{% static "css/navbar-top-fixed.css" %}">
+        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
         {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" href="{% static "css/rtl.css" %}">
         {% endif %}
@@ -30,10 +30,11 @@
         {% block extra_css %}{% endblock %}
     {% endcompress %}
 
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% compress js %}
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/bootstrap.js" %}"></script>
-    <script src="{% static "js/bootstrap-extras.js" %}"></script>
+    <script src="{% static "dist/js/jquery.js" %}"></script>
+    <script src="{% static "dist/js/bootstrap.js" %}"></script>
     {% block extra_js %}{% endblock %}
     {% endcompress %}
     <!--[if lt IE 9]>
@@ -48,79 +49,51 @@
 <div id="wrap">
 
 <nav class="navbar-default navbar-fixed-top" role="navigation">
-        <div class="navbar-header navbar-pink Aligner">
-            {% if settings.SITE_TITLE %}
-            <div class="Aligner-item Aligner-item--top">
-            </div>
-            <div class="navbar-brand Aligner-item">
-                <img src="{% static "assets/LogoMain.png" %}" />
-            </div>
-            <div class="Aligner-item Aligner-item--bottom">
-            </div>
-            {% endif %}
-            {# {% if settings.SITE_TAGLINE %}<p class="navbar-text">{{ settings.SITE_TAGLINE }}</p>{% endif %} #}
-        </div>
-        
-        {% page_menu "pages/menus/primary.html" %}
-        <div class="navbar-collapse collapse">
-            {% search_form "all" %}
-            {% page_menu "pages/menus/dropdown.html" %}
+    <div class="main-lockup">
+        {% if settings.SITE_TITLE %}
+        <div class="search-lockup">
+                {% search_form "all" %}
         </div>    
+        <div class="lockup-logo">
+            <img src="{% static "assets/LogoMain.png" %}" />
+        </div>
+        <div class="icon-lockup">
+            <div class="icon-item">
+                <a href="https://www.facebook.com/carolinabelleSC"><i class="fa fa-instagram"></i></a>
+            </div>
+            <div class="icon-item">
+                <a href="https://www.facebook.com/carolinabelleSC"><i class="fa fa-facebook-official"></i></a>
+            </div>
+            <div class="icon-item">
+                <a class="cart-container" href="/shop/cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    {% if request.cart.has_items %}
+                    <i class="fa fa-stacker">{{ request.cart.total_quantity }}</i>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    {% page_menu "pages/menus/primary.html" %}
+    <div class="navbar-collapse collapse">
+        {% page_menu "pages/menus/dropdown.html" %}
+    </div>    
 </nav>
-
-<div class="container-fluid">
-
-{% nevercache %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }}" data-alert="alert">
-    <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
-</div>
-{% endfor %}
-{% endnevercache %}
-
-
-</div>
 
 <div class="container-fluid primary-content">
     <div class="row">
-        <div class="col-md-2">
-            {% block left_panel %}
-            <div class="panel panel-default tree">
-                <div class="panel-body">
-                {% page_menu "pages/menus/tree.html" %}
-                </div>
-            </div>
-            {% endblock %}
-        </div>
-
-        <div class="col-md-7">
+        <div class="col-md-11">
             {% block main %}{% endblock %}
         </div>
 
-        <div class="col-md-3">
-            {% nevercache %}
-            {% include "includes/user_panel.html" %}
-            {% endnevercache %}
-
-            
-            {% block right_panel %}
-                {% ifinstalled mezzanine.twitter %}
-                {% if mezzanine.twitter.tweet %}
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {% include "twitter/tweets.html" %}
-                    </div>
-                </div>
-                {% endif %}
-                {% endifinstalled %}
-            {% endblock %}
-            
-        </div>
     </div>
 </div>
 </div><!-- /wrap -->
 
 <footer>
+    {% if settings.SITE_TAGLINE %}<p class="navbar-text">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     <div class="container-fluid">
     {# {% page_menu "pages/menus/footer.html" %} #}
     <p class="text-muted credit">

@@ -98,7 +98,7 @@ templates = {
     "cron": {
         "local_path": "deploy/crontab.template",
         "remote_path": "/etc/cron.d/%(proj_name)s",
-        "owner": "root",
+        "owner": "ec2-user",
         "mode": "600",
     },
     "gunicorn": {
@@ -406,7 +406,7 @@ def manage(command):
 
 @task
 @log_call
-@hosts(["root@%s" % host for host in env.hosts])
+@hosts(["ec2-user@%s" % host for host in env.hosts])
 def secure(new_user=env.user):
     """
     Minimal security steps for brand new servers.
