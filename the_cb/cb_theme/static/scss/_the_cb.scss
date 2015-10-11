@@ -1,0 +1,320 @@
+@font-face {
+  font-family: 'Xiomara';
+  src: url('/static/assets/xiomara.ttf');
+}
+
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.primary-content {
+  padding-top: 10rem;
+}
+
+.navbar-pink {
+  background-color: white;
+}
+
+.nav-item {
+  font-size: 2rem;
+}
+
+.form-control {
+  line-height: 1;
+}
+
+.btn-primary:hover {
+  background-color: $cb-pink;
+  color: $cb-blue;
+  border-color: $cb-pink;
+}
+
+.main-lockup {
+  display: flex;
+  background-color: white;
+  border-bottom: 3px $cb-pink solid;
+  padding: 0.3rem;
+}
+
+.main-lockup > * {
+  flex: 1;
+}
+
+.lockup-logo {
+  text-align: center;
+  flex: 3;
+}
+
+.lockup-logo img {
+  height: 8rem;
+  max-width: 100%;
+}
+
+.icon-lockup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-lockup .icon-item {
+  padding: 0.1rem 0.5rem;
+  font-size: 1.5rem;
+}
+
+
+.link-lockup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-bottom: 3px $cb-pink solid;
+  background-color: white;
+
+  .toggleNav {
+    display: none;
+  }
+}
+
+.lockup-link-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: $cb-pink;
+}
+
+.link-lockup .lockup-link-item a {
+  color: $cb-blue;
+  font-size: 2rem;
+}
+
+.link-lockup .lockup-link-item a:focus {
+  color: $cb-pink;
+  text-decoration: none;
+}
+
+.link-lockup .lockup-link-item a:hover {
+  color: $cb-pink;
+  text-decoration: none;
+}
+
+/* Remove this if i dont use nested menu */
+.dropdown-toggle:after {
+  content: none
+}
+
+.link-lockup .lockup-link-item.divider-vertical {
+  color: $cb-pink;
+}
+
+.main-marquee {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main-tagline {
+  font-size: 4rem;
+  line-height: 8rem;
+  color: $cb-pink;
+  font-family: 'Xiomara';
+  display: flex;
+  justify-content: center;
+}
+
+.product-wrapper {
+  display: flex;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-images {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.product-images img {
+  border: 1px $gray-lightest solid;
+}
+
+.product-thumbs {
+  display: flex;
+  order: 2;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.product-full-imagesize {
+  flex-grow: 2;
+  order: 1;
+}
+
+.product-selection-fields {
+  flex: 2;
+  padding-left: 2rem;
+}
+
+.product-prominent {
+  font-size: 2rem;
+  color: $cb-blue;
+  padding: 0 1rem;
+}
+
+.product-inputs {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-buttons {
+  width: 100%;
+  text-align: center;
+}
+
+.search-lockup {
+}
+
+.link-graphical {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.graphical-link-item {
+  min-height: 10rem;
+  min-width: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    .figure-caption {
+      display: flex;
+      width: 100%;
+      height: 10rem;
+      background-color: $cb-pink;
+      opacity: 0.8;
+      color: $cb-blue;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      div {
+        opacity: 1;
+      }
+    }
+  }
+  .figure-caption {
+    display: none;
+  }
+}
+
+#wrapper {
+  display: block;
+  width: 850px;
+  background: #fff;
+  margin: 0 auto;
+  margin-bottom: 35px;
+  padding: 25px 30px;
+  border-radius: 4px;
+}
+
+
+#productlist {
+  display: block;
+  margin-bottom: 15px;
+}
+
+#productlist li {
+  display: block;
+  float: left;
+  margin-bottom: 35px;
+}
+
+#productlist li img {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+#productlist li .details {
+  display: block;
+  float: left;
+  width: 180px;
+}
+
+button > i.fa-cart-plus {
+  color: $cb-pink;
+}
+
+.cart-container {
+  position: relative;
+}
+
+.cart-container > .fa-stacker {
+  font-size: .7rem;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: .25rem;
+  z-index: 1101;
+  left: 1.25rem;
+  background-color: $cb-pink;
+  padding: .1rem;
+}
+
+@media all and (max-width:500px) {
+
+  .link-lockup {
+    flex-direction: column;
+    align-items: center;
+
+    &.open {
+      .toggleNav {
+        //display: none;
+      }
+      .lockup-link-item {
+        display: flex;
+      }
+    }
+    
+    .lockup-link-item {
+      flex-basis: 100%;
+      display: none;
+    }
+    .toggleNav {
+      display: block;
+    }
+  }
+
+  .icon-lockup {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .product-wrapper {
+    flex-direction: column;
+    .product-full-imagesize {
+      align-self: center;
+      flex-grow: 1;
+    }
+  }
+}
+

@@ -12,4 +12,9 @@ _gaq.unshift(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_ID }}']);
     s.parentNode.insertBefore(g, s);
 })(document, 'script');
 {% endif %}
+$(function() {
+  $('.toggleNav').on('click',function() {
+    $('.link-lockup').toggleClass('open');
+  });
+});
 </script>

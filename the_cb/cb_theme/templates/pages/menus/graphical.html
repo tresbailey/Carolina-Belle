@@ -1,0 +1,23 @@
+{% load pages_tags i18n future mathfilters %}
+
+{% spaceless %}
+<nav class="link-graphical">
+        {% for page in page_branch %}
+        {% if page.in_menu %}
+    <a href="{{ page.get_absolute_url }}">
+        <div id="graphical-menu-{{ page.html_id }}"
+{% for page in page.children.all %}
+    {% if page.title == 'Image Link' %}
+            style="background-image: url('{{MEDIA_URL }}{{ page.gallery.images.all.0.file }}')" 
+    {% endif %}
+{% endfor %}
+            class="graphical-link-item">
+                <div class="figure-caption">
+                    <div>{{ page.title }}</div>
+                </div>
+        </div>
+    </a>
+        {% endif %}
+        {% endfor %}
+</nav>
+{% endspaceless %}

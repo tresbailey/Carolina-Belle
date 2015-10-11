@@ -55,7 +55,9 @@
                 {% search_form "all" %}
         </div>    
         <div class="lockup-logo">
-            <img src="{% static "assets/LogoMain.png" %}" />
+            <a href="/">
+                <img src="{% static "assets/LogoMain.png" %}" />
+            </a>
         </div>
         <div class="icon-lockup">
             <div class="icon-item">
@@ -84,7 +86,7 @@
 
 <div class="container-fluid primary-content">
     <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
             {% block main %}{% endblock %}
         </div>
 

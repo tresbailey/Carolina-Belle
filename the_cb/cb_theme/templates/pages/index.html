@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n pages_tags mezzanine_tags %}
 
 {% block meta_title %}{{page.meta_title}}{% endblock %}
 {% block title %}{{page.meta_title}}{% endblock %}
@@ -11,7 +11,7 @@
 {% block main %}
 
 <div class="main-marquee">
-    <div id="marquee-carousel" class="product-full-imagesize carousel slide" data-ride="carousel">
+    <div id="marquee-carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
         {% for image in page.gallery.images.all %}
             <li data-target="#marquee-carousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active" {% endif %}></li>
@@ -20,7 +20,8 @@
         <div class="carousel-inner" role="listbox">
         {% for image in page.gallery.images.all %}
             <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-                <img class="img-responsive" src="{{ MEDIA_URL }}{{ image.file }}">
+                <img class="img-responsive" src="http://lorempixel.com/1200/600">
+                {#<img class="img-responsive" src="{{ MEDIA_URL }}{{ image.file }}"> #}
                 <div class="carousel-caption">
                     <h3>{{ image.description }}</h3>
                 </div>
@@ -36,5 +37,15 @@
         {% endfor %}
         </div>
     </div>
+</div>
+
+<div class="main-tagline">
+    <div>
+    {{ settings.SITE_TAGLINE }}   
+    </div>
+</div>
+
+<div>
+{% page_menu "pages/menus/graphical.html" %}
 </div>
 {% endblock %}

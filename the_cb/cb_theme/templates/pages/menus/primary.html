@@ -2,19 +2,20 @@
 
 {% spaceless %}
 <nav class="link-lockup">
-        {% for page in page_branch %}
-        {% if page.in_menu %}
-        {% if forloop.counter > 1 %}
-        <li class="lockup-link-item divider-vertical"></li>
-        {% endif %}
-        <div id="primary-menu-{{ page.html_id }}"
-            class="navbar-item lockup-link-item 
+    <a href="#" class="toggleNav">☰ Menu</a>
+    {% for page in page_branch %}
+    {% if page.in_menu %}
+    {% if forloop.counter > 1 %}
+    <li class="lockup-link-item divider-vertical"></li>
+    {% endif %}
+    <div id="primary-menu-{{ page.html_id }}"
+        class="navbar-item lockup-link-item 
 {% if page.is_current_or_ascendant %}active{% endif %}">
 
-            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
 {{ page.children_in_menu }}
-        </div>
-        {% endif %}
-        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
 </nav>
 {% endspaceless %}

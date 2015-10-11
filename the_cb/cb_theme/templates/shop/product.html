@@ -58,7 +58,6 @@
         <div class="product-prominent">
             {{ product.title }}
         </div>
-    {% if product.available and has_available_variations %}
         <ul id="variations" class="product-prominent list-unstyled">
             {% for variation in variations %}
             <li id="variation-{{ variation.sku }}"
@@ -89,7 +88,6 @@
                 {% endif %}
             </div>
         </form>
-    {% endif %}
     </div>
 </div>
 {% else %}

@@ -1,0 +1,36 @@
+#wrapper {
+  display: block;
+  width: 850px;
+  background: #fff;
+  margin: 0 auto;
+  margin-bottom: 35px;
+  padding: 25px 30px;
+  border-radius: 4px;
+}
+
+
+#productlist {
+  display: block;
+  margin-bottom: 15px;
+}
+
+#productlist li {
+  display: block;
+  float: left;
+  margin-bottom: 35px;
+}
+
+#productlist li img {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+#productlist li .details {
+  display: block;
+  float: left;
+  width: 180px;
+}
+
+button > i.fa-cart-plus {
+  color: #f067a6;
+}

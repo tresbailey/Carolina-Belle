@@ -78,13 +78,14 @@ SHOP_OPTION_TYPE_CHOICES = (
      (12, "Boxer Sizes"),
      (13, "Linen Bib Fabric"),
      (14, "Bloomer Sizes"),
-     (15, "College Bloomer Teams")
+     (15, "College Bloomer Teams"),
+     (16, "Thread Colors")
  )
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
 # eg for "Colour" then "Size" given the above:
-SHOP_OPTION_ADMIN_ORDER = range(1,15)
+SHOP_OPTION_ADMIN_ORDER = range(1,16)
 
 
 ######################
@@ -129,6 +130,7 @@ PAGE_MENU_TEMPLATES = (
     (1, _("Top navigation bar"), "pages/menus/primary.html"),
     (2, _("Left-hand tree"), "pages/menus/tree.html"),
     (3, _("Footer"), "pages/menus/footer.html"),
+    (4, _("graphical"), "pages/menus/graphical.html")
 )
 
 # A sequence of fields that will be injected into Mezzanine's (or any
