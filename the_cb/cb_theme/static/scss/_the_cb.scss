@@ -25,6 +25,17 @@ a {
   }
 }
 
+.col-md-12 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.product-sorting {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
 .primary-content {
   padding-top: 10rem;
 }
@@ -126,6 +137,7 @@ a {
 .main-marquee {
   display: flex;
   justify-content: space-around;
+  padding-bottom: 5rem;
 }
 
 .main-tagline {
@@ -135,6 +147,7 @@ a {
   font-family: 'Xiomara';
   display: flex;
   justify-content: center;
+  background-color: $cb-blue;
 }
 
 .product-wrapper {
@@ -196,6 +209,8 @@ a {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  background-color: $cb-blue;
+  padding: 5rem 0;
 }
 
 .graphical-link-item {
@@ -257,6 +272,12 @@ a {
   display: block;
   float: left;
   width: 180px;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button > i.fa-cart-plus {

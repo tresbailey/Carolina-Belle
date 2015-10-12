@@ -6,7 +6,9 @@
 {% block main %}{{ block.super }}
 
 {% editable page.category.content %}
+<div class="main-tagline">
 {{ page.category.content|safe }}
+</div>
 {% endeditable %}
 
 
@@ -26,24 +28,24 @@
 
 <div class="row thumbnails">
     {% for product in products.object_list %}
-    <div class="col-sm-6 col-md-3 categories">
+    <div class="col-sm-6 col-md-3">
         <a href="{{ product.get_absolute_url }}" class="thumbnail catlink">
-            {% if product.image %}
-            <img src="{{ MEDIA_URL }}{% thumbnail product.image 100 100 %}">
-            {% else %}
-            <div class="placeholder"></div>
-            {% endif %}
-            <div class="caption">
-            <h6>{{ product }}</h6>
-            {% if product.has_price %}
-                {% if product.on_sale %}
-                <span class="old-price">{{ product.unit_price|currency }}</span>
-                {% trans "On sale:" %}
+            <div class="categories">
+                {% if product.image %}
+                <img src="{{ MEDIA_URL }}{% thumbnail product.image 100 100 %}">
+                {% else %}
+                <div class="placeholder"></div>
                 {% endif %}
-                <span class="price">{{ product.price|currency }}</span>
-            {% else %}
-            {% trans "Coming soon" %}
-            {% endif %}
+                <h6>{{ product }}</h6>
+                {% if product.has_price %}
+                    {% if product.on_sale %}
+                    <span class="old-price">{{ product.unit_price|currency }}</span>
+                    {% trans "On sale:" %}
+                    {% endif %}
+                    <span class="price">{{ product.price|currency }}</span>
+                {% else %}
+                {% trans "Coming soon" %}
+                {% endif %}
             </div>
         </a>
     </div>

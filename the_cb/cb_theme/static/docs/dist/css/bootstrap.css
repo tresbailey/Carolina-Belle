@@ -6752,6 +6752,24 @@ a:hover {
   text-decoration: none;
 }
 
+.col-md-12 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.product-sorting {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  margin: 0;
+
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .primary-content {
   padding-top: 10rem;
 }
@@ -6880,6 +6898,7 @@ a:hover {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+  padding-bottom: 5rem;
 
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
@@ -6895,6 +6914,7 @@ a:hover {
   font-size: 4rem;
   line-height: 8rem;
   color: #f067a6;
+  background-color: #0d024c;
 
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -7007,6 +7027,8 @@ a:hover {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+  padding: 5rem 0;
+  background-color: #0d024c;
 
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
@@ -7095,6 +7117,23 @@ a:hover {
   display: block;
   float: left;
   width: 180px;
+}
+
+.categories {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+          flex-direction: column;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
 }
 
 button > i.fa-cart-plus {
