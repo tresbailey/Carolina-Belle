@@ -1,0 +1,26 @@
+{% load i18n mezzanine_tags accounts_tags %}
+
+<form action="/accounts/signup/?next={{request.path}}" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="signupModalLabel">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+            {% signup_form as form %}
+            {% fields_for form%}
+      </div>
+      <div class="modal-footer">
+          {% block account_form_actions %}
+          <input class="btn btn-primary btn-lg pull-right" type="submit" value="{{ title }}">
+          {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+</form>

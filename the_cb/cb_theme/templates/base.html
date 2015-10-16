@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n future staticfiles %}
+{% load pages_tags mezzanine_tags i18n future staticfiles accounts_tags %}
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>{% block meta_title %}{% endblock %}</title>
@@ -15,8 +15,8 @@
     {% endifinstalled %}
 
     {% compress css %}
-        <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
         <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+        <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
         <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
         {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" href="{% static "css/rtl.css" %}">
@@ -74,6 +74,21 @@
                     {% endif %}
                 </a>
             </div>
+            {% if request.user.is_authenticated %}
+            <div class="icon-item">
+                <a href="{% url "logout" %}?next={{ request.path }}"
+                    class="cart-container"><i class="fa fa-lock" title="{% trans "Log out"%}"></i></a>
+            </div>
+            {% else %}
+            <div class="icon-item">
+                <a href="{% url "login" %}?next={{ request.path }}" data-toggle="modal" data-target="#loginModal"
+                    class="cart-container"><i class="fa fa-unlock" title="{% trans "Log in"%}"></i></a>
+            </div>
+            <div class="icon-item">
+                <a href="{% url "signup" %}?next={{ request.path }}" data-toggle="modal" data-target="#signupModal"
+                    class="cart-container"><i class="fa fa-user-plus" title="{% trans "Sign up"%}"></i></a>
+            </div>
+            {% endif %}
         </div>
         {% endif %}
     </div>
@@ -96,18 +111,13 @@
 
 <footer>
     {% if settings.SITE_TAGLINE %}<p class="navbar-text">{{ settings.SITE_TAGLINE }}</p>{% endif %}
-    <div class="container-fluid">
-    {# {% page_menu "pages/menus/footer.html" %} #}
-    <p class="text-muted credit">
-        {% ifinstalled mezzanine.mobile %}
-        <span class="separator">|</span>
-        <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
-        {% endifinstalled %}
-    </p>
-    </div>
+    {% page_menu "pages/menus/footer.html" %}
 </footer>
 
 {% include "includes/footer_scripts.html" %}
+
+{% include "pages/sign_up_form.html" with title="Sign up" %}
+{% include "pages/login_form.html" with title="Log in" %}
 
 </body>
 </html>

@@ -236,7 +236,7 @@ DATABASES = {
         # Not used with sqlite3.
         "PASSWORD": "",
         # Set to empty string for localhost. Not used with sqlite3.
-        "HOST": "",
+        "HOST": "0.0.0.0",
         # Set to empty string for default. Not used with sqlite3.
         "PORT": "",
     }
@@ -310,7 +310,7 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    # "mezzanine.accounts",
+    "mezzanine.accounts",
     # "mezzanine.mobile",
 )
 

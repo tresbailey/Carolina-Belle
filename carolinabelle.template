@@ -1,0 +1,65 @@
+{
+  "Parameters" : {
+    "KeyName" : {
+      "Description" : "The EC2 Key Pair to allow SSH access to the instance",
+      "Type" : "AWS::EC2::KeyPair::KeyName",
+      "Default" : "thecarolinabelle"
+    },
+    "SampleInstanceType" : {
+        "Description" : "Salt master EC2 instance type",
+        "Type" : "String",
+        "Default" : "t2.micro"
+    },
+    "SampleSecurityGroups" : {
+        "Description" : "Comma delimited list of security group IDs for Salt master instance to launch within (default taken from vpcstackddashsb stack/VPC21)",
+        "Type" : "CommaDelimitedList",
+        "Default" : "sg-24eb0042,sg-59957e3f"
+    },
+    "SampleSubnet" : {
+        "Description" : "Stores the delimited list of subnets (default taken as subnet-39434a11 VPC201 - mgmtsubnet-us-east-1a)",
+        "Type": "String",
+        "Default": "subnet-f3263984"
+    },
+    "AmiId" : {
+        "Description" : "The AMI Id of the Foundation CentOS Latest is used",
+        "Type": "String",
+        "Default": "ami-e3106686"
+    }
+  },
+  "Resources" : {
+    "Ec2Instance" : {
+      "Type" : "AWS::EC2::Instance",
+      "Properties" : {
+        "SubnetId": { "Ref": "SampleSubnet" },
+        "SecurityGroupIds" : { "Ref" : "SampleSecurityGroups" },
+        "InstanceType" : { "Ref" : "SampleInstanceType" },
+        "KeyName" : { "Ref" : "KeyName"},
+        "ImageId" : { "Ref" : "AmiId" },
+        "Tags" : [
+          {"Key" : "Product", "Value" : "infra:sample" },
+          {"Key" : "Service", "Value" : "infra" },
+          {"Key" : "Name", "Value" : "tresback-carolinabelle-mezzanine" },
+          {"Key" : "Network", "Value" : "private" }
+        ],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : [ "", [
+          "#!/bin/bash\n\n",
+          "zypper install -y git gcc libjpeg-devel zlib-devel postgresql-devel python-devel\n",
+          "wget https://bootstrap.pypa.io/ez_setup.py -O - | python\n",
+          "easy_install pip\n",
+          "pip install virtualenv\n",
+          "useradd -G wheel carolinabelle\n",
+          "echo carolinabelle:CBAccess | chpasswd \n",
+          "mkdir /application; cd /application/the_cb\n",
+          "git clone https://github.com/tresbailey/Carolina-Belle.git\n",
+          "virtualenv ../venv; source ../venv/bin/activate\n",
+          "export LANG=en_US\n"
+        ]
+        ]
+        }
+        }
+      }
+    }
+
+  }
+}
+

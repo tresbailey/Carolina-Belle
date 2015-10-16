@@ -48,6 +48,14 @@ a {
   font-size: 2rem;
 }
 
+.navbar-text {
+  font-family: Xiomara;
+  color: $cb-pink;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: none;
+}
+
 .form-control {
   line-height: 1;
 }
@@ -89,13 +97,47 @@ a {
   font-size: 1.5rem;
 }
 
-
-.link-lockup {
+@mixin link-menu() {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-top: .5rem;
   padding-bottom: .5rem;
+  min-height: 1rem;
+}
+
+@mixin link-menu-item() {
+  padding: 0 1rem;
+
+  a {
+    color: $cb-blue;
+    font-size: 2rem;
+    color: $cb-blue;
+    vertical-align: middle;
+    &:hover, &:focus {
+      color: $cb-pink;
+      tex-decoration: none;
+    }
+  }
+  &.divider-vertical {
+    color: $cb-pink;
+  }
+}
+
+.footer-lockup {
+  @include link-menu();
+  min-height: 7rem;
+}
+
+.footer-link-item {
+  @include link-menu-item();
+  border-right: 1px solid $cb-pink;
+  vertical-align: middle;
+  padding: 2rem 1rem;
+}
+
+.link-lockup {
+  @include link-menu();
   border-bottom: 3px $cb-pink solid;
   background-color: white;
 
@@ -105,33 +147,12 @@ a {
 }
 
 .lockup-link-item {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  color: $cb-pink;
-}
-
-.link-lockup .lockup-link-item a {
-  color: $cb-blue;
-  font-size: 2rem;
-}
-
-.link-lockup .lockup-link-item a:focus {
-  color: $cb-pink;
-  text-decoration: none;
-}
-
-.link-lockup .lockup-link-item a:hover {
-  color: $cb-pink;
-  text-decoration: none;
+  @include link-menu-item();
 }
 
 /* Remove this if i dont use nested menu */
 .dropdown-toggle:after {
   content: none
-}
-
-.link-lockup .lockup-link-item.divider-vertical {
-  color: $cb-pink;
 }
 
 .main-marquee {
@@ -160,16 +181,26 @@ a {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-}
+  flex-basis: 60vw;
+  img {
+    border: 1px $gray-lightest solid;
+  }
 
-.product-images img {
-  border: 1px $gray-lightest solid;
+  .carousel-item.active {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    img {
+      width: 35rem;
+      height: 100%;
+    }
+  }
 }
 
 .product-thumbs {
   display: flex;
   order: 2;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding-top: 1rem;
 }
@@ -181,25 +212,28 @@ a {
 
 .product-selection-fields {
   flex: 2;
-  padding-left: 2rem;
 }
 
 .product-prominent {
   font-size: 2rem;
-  color: $cb-blue;
-  padding: 0 1rem;
+  color: $cb-pink;
+  font-family: Xiomara;
+
+  &#variations {
+    font-family: Georgia;
+    color: $cb-blue;
+  }
 }
 
 .product-inputs {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
   flex-wrap: wrap;
 }
 
 .product-buttons {
   width: 100%;
-  text-align: center;
 }
 
 .search-lockup {
@@ -300,6 +334,12 @@ button > i.fa-cart-plus {
   padding: .1rem;
 }
 
+@media all and (max-width: 850px) {
+  .primary-content {
+    padding-top: 15rem;
+  }
+}
+
 @media all and (max-width:500px) {
 
   .link-lockup {
@@ -312,6 +352,7 @@ button > i.fa-cart-plus {
       }
       .lockup-link-item {
         display: flex;
+        min-height: 1rem;
       }
     }
     
@@ -321,6 +362,14 @@ button > i.fa-cart-plus {
     }
     .toggleNav {
       display: block;
+    }
+  }
+
+  .footer-lockup {
+    flex-direction: column;
+    .footer-link-item {
+        border: none;
+        padding: 0 2rem;
     }
   }
 
@@ -336,6 +385,10 @@ button > i.fa-cart-plus {
       align-self: center;
       flex-grow: 1;
     }
+  }
+
+  .product-images {
+    flex-basis: auto;
   }
 }
 

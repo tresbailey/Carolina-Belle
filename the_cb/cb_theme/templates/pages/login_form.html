@@ -1,0 +1,34 @@
+{% load i18n mezzanine_tags accounts_tags %}
+
+<form action="/accounts/login/?next={{request.path}}" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="loginModalLabel">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        {% login_form as form %}
+        {% fields_for form %}
+        <div class="form-actions">
+        </div>
+        {% url "signup" as signup_url %}
+        <p>{% blocktrans with request.GET.next as next %}If you don't have an account you can <a href="{{ signup_url }}?next={{ next }}">sign up</a> for one now.{% endblocktrans %}</p>
+        {% url "mezzanine_password_reset" as password_reset_url %}
+        {% url "profile_update" as profile_update_url %}
+        {% blocktrans %}<p>You can also <a href="{{ password_reset_url }}?next={{ profile_update_url }}">reset your password</a> if you've forgotten it.</p>{% endblocktrans %}</p>
+      </div>
+      <div class="modal-footer">
+        {% block account_form_actions %}
+        <input class="btn btn-primary btn-lg pull-right" type="submit" value="{{ title }}">
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+

@@ -12,10 +12,10 @@
         <a href="{% url "profile_update" %}">{{ request.user|username_or:"email" }}</a>
     {% endif %}
     <a href="{% url "logout" %}?next={{ request.path }}"
-        class="btn btn-default btn-sm btn-danger btn-account">{% trans "Log out" %}</a>
+        class="btn btn-default btn-sm"><i class="fa fa-lock" title="{% trans "Log out"%}"></i></a>
 {% else %}
     <a href="{% url "login" %}?next={{ request.path }}"
-        class="btn btn-default btn-sm btn-account">{% trans "Log in" %}</a>
+        class="btn btn-default btn-sm btn-account"><i class="fa fa-unlock" title="{% trans "Log in"%}"></i></a>
     {% trans "or" %}
     <a href="{% url "signup" %}?next={{ request.path }}"
         class="btn btn-default btn-sm btn-account">{% trans "Sign up" %}</a>

@@ -6782,6 +6782,14 @@ a:hover {
   font-size: 2rem;
 }
 
+.navbar-text {
+  padding: 1rem;
+  margin: none;
+  font-family: Xiomara;
+  font-size: 2rem;
+  color: #f067a6;
+}
+
 .form-control {
   line-height: 1;
 }
@@ -6840,11 +6848,55 @@ a:hover {
   font-size: 1.5rem;
 }
 
+.footer-lockup {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  min-height: 1rem;
+  min-height: 7rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer-link-item {
+  padding: 0 1rem;
+  padding: 2rem 1rem;
+  vertical-align: middle;
+  border-right: 1px solid #f067a6;
+}
+
+.footer-link-item a {
+  font-size: 2rem;
+  color: #0d024c;
+  color: #0d024c;
+  vertical-align: middle;
+}
+
+.footer-link-item a:hover, .footer-link-item a:focus {
+  color: #f067a6;
+
+  tex-decoration: none;
+}
+
+.footer-link-item.divider-vertical {
+  color: #f067a6;
+}
+
 .link-lockup {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+  min-height: 1rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
   background-color: white;
@@ -6864,33 +6916,29 @@ a:hover {
 }
 
 .lockup-link-item {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  color: #f067a6;
+  padding: 0 1rem;
 }
 
-.link-lockup .lockup-link-item a {
+.lockup-link-item a {
   font-size: 2rem;
   color: #0d024c;
+  color: #0d024c;
+  vertical-align: middle;
 }
 
-.link-lockup .lockup-link-item a:focus {
+.lockup-link-item a:hover, .lockup-link-item a:focus {
   color: #f067a6;
-  text-decoration: none;
+
+  tex-decoration: none;
 }
 
-.link-lockup .lockup-link-item a:hover {
+.lockup-link-item.divider-vertical {
   color: #f067a6;
-  text-decoration: none;
 }
 
 /* Remove this if i dont use nested menu */
 .dropdown-toggle:after {
   content: none;
-}
-
-.link-lockup .lockup-link-item.divider-vertical {
-  color: #f067a6;
 }
 
 .main-marquee {
@@ -6949,10 +6997,31 @@ a:hover {
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
+  -webkit-flex-basis: 60vw;
+  -ms-flex-preferred-size: 60vw;
+          flex-basis: 60vw;
 }
 
 .product-images img {
   border: 1px #f7f7f9 solid;
+}
+
+.product-images .carousel-item.active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  text-align: center;
+
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.product-images .carousel-item.active img {
+  width: 35rem;
+  height: 100%;
 }
 
 .product-thumbs {
@@ -6966,9 +7035,10 @@ a:hover {
   -webkit-order: 2;
   -ms-flex-order: 2;
           order: 2;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-          justify-content: space-around;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -6987,8 +7057,6 @@ a:hover {
 }
 
 .product-selection-fields {
-  padding-left: 2rem;
-
   -webkit-box-flex: 2;
   -webkit-flex: 2;
       -ms-flex: 2;
@@ -6996,8 +7064,13 @@ a:hover {
 }
 
 .product-prominent {
-  padding: 0 1rem;
+  font-family: Xiomara;
   font-size: 2rem;
+  color: #f067a6;
+}
+
+.product-prominent#variations {
+  font-family: Georgia;
   color: #0d024c;
 }
 
@@ -7006,8 +7079,12 @@ a:hover {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  padding: 1rem;
+          flex-direction: column;
 
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -7019,7 +7096,6 @@ a:hover {
 
 .product-buttons {
   width: 100%;
-  text-align: center;
 }
 
 .link-graphical {
@@ -7156,6 +7232,12 @@ button > i.fa-cart-plus {
   background-color: #f067a6;
 }
 
+@media all and (max-width: 850px) {
+  .primary-content {
+    padding-top: 15rem;
+  }
+}
+
 @media all and (max-width: 500px) {
   .link-lockup {
             flex-direction: column;
@@ -7174,6 +7256,7 @@ button > i.fa-cart-plus {
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
+    min-height: 1rem;
   }
   .link-lockup .lockup-link-item {
     display: none;
@@ -7184,6 +7267,18 @@ button > i.fa-cart-plus {
   }
   .link-lockup .toggleNav {
     display: block;
+  }
+  .footer-lockup {
+            flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+  }
+  .footer-lockup .footer-link-item {
+    padding: 0 2rem;
+    border: none;
   }
   .icon-lockup {
             flex-direction: column;
@@ -7217,6 +7312,11 @@ button > i.fa-cart-plus {
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
             flex-grow: 1;
+  }
+  .product-images {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+            flex-basis: auto;
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
