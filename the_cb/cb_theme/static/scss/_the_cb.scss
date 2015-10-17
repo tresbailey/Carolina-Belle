@@ -37,7 +37,7 @@ a {
 }
 
 .primary-content {
-  padding-top: 10rem;
+  padding-top: 11rem;
 }
 
 .navbar-pink {
@@ -54,6 +54,12 @@ a {
   font-size: 2rem;
   padding: 1rem;
   margin: none;
+}
+
+footer {
+  .navbar-text {
+    text-align: center;
+  }
 }
 
 .form-control {
@@ -121,6 +127,7 @@ a {
   }
   &.divider-vertical {
     color: $cb-pink;
+    padding: 1rem;
   }
 }
 

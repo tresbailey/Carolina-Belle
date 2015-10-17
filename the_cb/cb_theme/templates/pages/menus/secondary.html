@@ -1,0 +1,19 @@
+{% load pages_tags i18n future mathfilters %}
+
+{% spaceless %}
+{% if page.is_current_or_ascendant %}
+<nav class="link-lockup">
+    {% for page in page_branch %}
+    {% if page.title != 'Image Link' %}
+    <div id="primary-menu-{{ page.html_id }}"
+        class="navbar-item lockup-link-item 
+{% if page.is_current_or_ascendant %}active{% endif %}">
+
+        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</nav>
+{% endif %}
+{% endspaceless %}
+

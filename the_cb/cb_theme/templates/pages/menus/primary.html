@@ -5,17 +5,26 @@
     <a href="#" class="toggleNav">☰ Menu</a>
     {% for page in page_branch %}
     {% if page.in_menu %}
-    {% if forloop.counter > 1 %}
-    <li class="lockup-link-item divider-vertical"></li>
+    {% if page.is_primary and forloop.counter > 1 %}
+    <div class="lockup-link-item divider-vertical fa fa-circle"></div>
     {% endif %}
     <div id="primary-menu-{{ page.html_id }}"
         class="navbar-item lockup-link-item 
 {% if page.is_current_or_ascendant %}active{% endif %}">
 
         <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-{{ page.children_in_menu }}
     </div>
     {% endif %}
     {% endfor %}
 </nav>
+
+{% for page in page_branch %}
+  {% if page.in_menu %}
+    {% if page.is_current_or_ascendant %}
+    {% if page.has_children_in_menu %}
+        {% page_menu page %}
+    {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
 {% endspaceless %}

@@ -6771,7 +6771,7 @@ a:hover {
 }
 
 .primary-content {
-  padding-top: 10rem;
+  padding-top: 11rem;
 }
 
 .navbar-pink {
@@ -6788,6 +6788,10 @@ a:hover {
   font-family: Xiomara;
   font-size: 2rem;
   color: #f067a6;
+}
+
+footer .navbar-text {
+  text-align: center;
 }
 
 .form-control {
@@ -6888,6 +6892,7 @@ a:hover {
 }
 
 .footer-link-item.divider-vertical {
+  padding: 1rem;
   color: #f067a6;
 }
 
@@ -6933,6 +6938,7 @@ a:hover {
 }
 
 .lockup-link-item.divider-vertical {
+  padding: 1rem;
   color: #f067a6;
 }
 
