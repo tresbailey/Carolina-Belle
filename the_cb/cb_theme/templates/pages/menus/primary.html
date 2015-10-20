@@ -1,9 +1,11 @@
 {% load pages_tags i18n future mathfilters %}
 
 {% spaceless %}
-<nav class="link-lockup">
-    <a href="#" class="toggleNav">☰ Menu</a>
+<nav class="link-lockup {% if branch_level %}secondary{%endif%}">
     {% for page in page_branch %}
+    {% if page.is_primary and forloop.counter == 1 %}
+    <a href="#" class="toggleNav">☰ Menu</a>
+    {% endif %}
     {% if page.in_menu %}
     {% if page.is_primary and forloop.counter > 1 %}
     <div class="lockup-link-item divider-vertical fa fa-circle"></div>

@@ -20,7 +20,7 @@ body {
 a {
   text-decoration: none;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     text-decoration: none;
   }
 }
@@ -120,7 +120,7 @@ footer {
     font-size: 2rem;
     color: $cb-blue;
     vertical-align: middle;
-    &:hover, &:focus {
+    &:hover, &:focus, &.active {
       color: $cb-pink;
       tex-decoration: none;
     }
@@ -175,7 +175,8 @@ footer {
   font-family: 'Xiomara';
   display: flex;
   justify-content: center;
-  background-color: $cb-blue;
+  //background-color: $cb-blue;
+  padding: 1rem;
 }
 
 .product-wrapper {
@@ -349,6 +350,10 @@ button > i.fa-cart-plus {
 
 @media all and (max-width:500px) {
 
+  .col-md-12 {
+    width: 100vw;
+  }
+
   .link-lockup {
     flex-direction: column;
     align-items: center;
@@ -360,7 +365,17 @@ button > i.fa-cart-plus {
       .lockup-link-item {
         display: flex;
         min-height: 1rem;
+        &.divider-vertical {
+          display: none;
+        }
       }
+    }
+    
+    &.secondary {
+      border: none;
+    }
+    &.secondary.open {
+      border-bottom: 3px $cb-pink solid;
     }
     
     .lockup-link-item {
