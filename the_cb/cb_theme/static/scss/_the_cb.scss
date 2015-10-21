@@ -353,6 +353,13 @@ button > i.fa-cart-plus {
   left: 1.25rem;
   background-color: $cb-pink;
   padding: .1rem;
+  border-radius: 10px;
+  min-width: .9rem;
+}
+
+.table-striped tbody tr:first-child,
+.table-striped tbody tr:last-child {
+    background-color: $cb-pink;
 }
 
 @media all and (max-width: 850px) {
@@ -440,6 +447,7 @@ button > i.fa-cart-plus {
 
   .graphical-link-item {
     width: 25%;
+    border: 2px solid $cb-blue;
     .figure-caption {
       @include graphical-link-overlay();
     }

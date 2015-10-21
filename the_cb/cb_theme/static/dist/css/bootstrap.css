@@ -7248,10 +7248,17 @@ button > i.fa-cart-plus {
   top: .25rem;
   left: 1.25rem;
   z-index: 1101;
+  min-width: .9rem;
   padding: .1rem;
   font-size: .7rem;
   color: white;
   text-align: center;
+  background-color: #f067a6;
+  border-radius: 10px;
+}
+
+.table-striped tbody tr:first-child,
+.table-striped tbody tr:last-child {
   background-color: #f067a6;
 }
 
@@ -7387,6 +7394,7 @@ button > i.fa-cart-plus {
   }
   .graphical-link-item {
     width: 25%;
+    border: 2px solid #0d024c;
   }
   .graphical-link-item .figure-caption {
     display: -webkit-box;
