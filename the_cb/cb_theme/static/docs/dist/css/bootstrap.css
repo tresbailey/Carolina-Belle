@@ -7369,5 +7369,48 @@ button > i.fa-cart-plus {
     -ms-flex-align: center;
             align-items: center;
   }
+  .link-graphical {
+            flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+  }
+  .graphical-link-item {
+    width: 25%;
+  }
+  .graphical-link-item .figure-caption {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    width: 100%;
+    height: 10rem;
+    font-size: 2rem;
+    color: #0d024c;
+    background-color: #f067a6;
+    opacity: .8;
+
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+  }
+  .graphical-link-item .figure-caption div {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */

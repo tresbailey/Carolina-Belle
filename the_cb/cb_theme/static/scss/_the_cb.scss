@@ -255,6 +255,22 @@ footer {
   padding: 5rem 0;
 }
 
+
+@mixin graphical-link-overlay() {
+  display: flex;
+  width: 100%;
+  height: 10rem;
+  background-color: $cb-pink;
+  opacity: 0.8;
+  color: $cb-blue;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  div {
+    opacity: 1;
+  }
+}
+
 .graphical-link-item {
   min-height: 10rem;
   min-width: 11rem;
@@ -264,18 +280,7 @@ footer {
 
   &:hover {
     .figure-caption {
-      display: flex;
-      width: 100%;
-      height: 10rem;
-      background-color: $cb-pink;
-      opacity: 0.8;
-      color: $cb-blue;
-      justify-content: center;
-      align-items: center;
-      font-size: 2rem;
-      div {
-        opacity: 1;
-      }
+      @include graphical-link-overlay();
     }
   }
   .figure-caption {
@@ -425,6 +430,19 @@ button > i.fa-cart-plus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .link-graphical {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .graphical-link-item {
+    width: 25%;
+    .figure-caption {
+      @include graphical-link-overlay();
+    }
   }
 }
 
