@@ -316,6 +316,13 @@ footer {
   width: 180px;
 }
 
+.category-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
 .categories {
   display: flex;
   flex-direction: column;
@@ -327,6 +334,7 @@ button > i.fa-cart-plus {
 }
 
 .cart-container {
+  font-family: Georgia;
   position: relative;
 }
 
@@ -411,6 +419,12 @@ button > i.fa-cart-plus {
 
   .product-images {
     flex-basis: auto;
+  }
+
+  .category-controls {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 

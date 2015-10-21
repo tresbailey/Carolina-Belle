@@ -21,15 +21,4 @@ $(function() {
 if ($('nav.link-lockup').length > 1) {
     $('.primary-content').css('padding-top', '15rem');
 }
-{% spaceless %}
-{% for page in page_branch %}
-  {% if page.in_menu %}
-    {% if page.is_current_or_ascendant %}
-    {% if page.has_children_in_menu %}
-
-    {% endif %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-{% endspaceless %}
 </script>
