@@ -6782,16 +6782,9 @@ a:hover, a:active, a:focus {
   font-size: 2rem;
 }
 
-.navbar-text {
-  padding: 1rem;
-  margin: none;
-  font-family: Xiomara;
-  font-size: 2rem;
-  color: #f067a6;
-}
-
-footer .navbar-text {
-  text-align: center;
+footer {
+  background-color: inherit;
+  border: none;
 }
 
 .form-control {
@@ -6858,7 +6851,6 @@ footer .navbar-text {
   display: -ms-flexbox;
   display:         flex;
   min-height: 1rem;
-  min-height: 7rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
 
@@ -6873,7 +6865,6 @@ footer .navbar-text {
 
 .footer-link-item {
   padding: 0 1rem;
-  padding: 2rem 1rem;
   vertical-align: middle;
   border-right: 1px solid #f067a6;
 }
@@ -6894,6 +6885,10 @@ footer .navbar-text {
 .footer-link-item.divider-vertical {
   padding: 1rem;
   color: #f067a6;
+}
+
+.footer-link-item a {
+  font-size: 1rem;
 }
 
 .link-lockup {
@@ -6952,7 +6947,6 @@ footer .navbar-text {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  padding-bottom: 5rem;
 
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
@@ -6969,11 +6963,21 @@ footer .navbar-text {
   font-size: 4rem;
   line-height: 8rem;
   color: #f067a6;
+          flex-direction: column;
 
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+}
+
+.main-tagline .sub-tagline {
+  font-size: 2rem;
+  line-height: 4rem;
 }
 
 .product-wrapper {
@@ -7319,7 +7323,7 @@ button > i.fa-cart-plus {
         -ms-flex-direction: column;
   }
   .footer-lockup .footer-link-item {
-    padding: 0 2rem;
+    padding: 0 1rem;
     border: none;
   }
   .icon-lockup {

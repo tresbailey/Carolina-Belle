@@ -20,7 +20,7 @@
         <div class="carousel-inner" role="listbox">
         {% for image in page.gallery.images.all %}
             <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-                <img class="img-responsive" src="http://lorempixel.com/1200/600">
+                <img class="img-responsive" src="http://lorempixel.com/1200/500">
                 {#<img class="img-responsive" src="{{ MEDIA_URL }}{{ image.file }}"> #}
                 <div class="carousel-caption">
                     <h3>{{ image.description }}</h3>
@@ -41,7 +41,11 @@
 
 <div class="main-tagline">
     <div>
-    {{ settings.SITE_TAGLINE }}   
+    {#{{ settings.SITE_TAGLINE }}#}
+    Jeremiah 1:5
+    </div>
+    <div class="sub-tagline">
+    Before I formed you in the womb I knew you, before you were born I set you apart
     </div>
 </div>
 

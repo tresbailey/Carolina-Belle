@@ -48,18 +48,9 @@ a {
   font-size: 2rem;
 }
 
-.navbar-text {
-  font-family: Xiomara;
-  color: $cb-pink;
-  font-size: 2rem;
-  padding: 1rem;
-  margin: none;
-}
-
 footer {
-  .navbar-text {
-    text-align: center;
-  }
+  background-color: inherit;
+  border: none;
 }
 
 .form-control {
@@ -133,14 +124,15 @@ footer {
 
 .footer-lockup {
   @include link-menu();
-  min-height: 7rem;
 }
 
 .footer-link-item {
   @include link-menu-item();
   border-right: 1px solid $cb-pink;
   vertical-align: middle;
-  padding: 2rem 1rem;
+  a {
+    font-size: 1rem;
+  }
 }
 
 .link-lockup {
@@ -165,7 +157,6 @@ footer {
 .main-marquee {
   display: flex;
   justify-content: space-around;
-  padding-bottom: 5rem;
 }
 
 .main-tagline {
@@ -174,9 +165,15 @@ footer {
   color: $cb-pink;
   font-family: 'Xiomara';
   display: flex;
-  justify-content: center;
+  align-items: center;
   //background-color: $cb-blue;
   padding: 1rem;
+  flex-direction: column;
+
+  .sub-tagline {
+    font-size: 2rem;
+    line-height: 4rem;
+  }
 }
 
 .product-wrapper {
@@ -411,7 +408,7 @@ button > i.fa-cart-plus {
     flex-direction: column;
     .footer-link-item {
         border: none;
-        padding: 0 2rem;
+        padding: 0 1rem;
     }
   }
 
