@@ -82,6 +82,14 @@ SHOP_OPTION_TYPE_CHOICES = (
      (16, "Thread Colors")
  )
 
+ # Sequence of name/value pairs for types of embroidery/personalization options
+CB_EMBROIDERY_CHOICES = (
+    (1, "Embroidery Type"),
+    (2, "Embroidery Size"),
+    (3, "Embroidery Thread Color"),
+    (4, "Embroidery Font")
+)
+
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
 # eg for "Colour" then "Size" given the above:
@@ -101,14 +109,15 @@ SHOP_OPTION_ADMIN_ORDER = range(1,16)
 
 # Controls the ordering and grouping of the admin menu.
 #
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", (_("Media Library"), "fb_browse"),)),
-#     (_("Shop"), ("shop.Product", "shop.ProductOption", "shop.DiscountCode",
-#        "shop.Sale", "shop.Order")),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+ADMIN_MENU_ORDER = (
+    ("Content", ("pages.Page", "blog.BlogPost",
+       "generic.ThreadedComment", (_("Media Library"), "fb_browse"),)),
+    (_("Shop"), ("shop.Product", "shop.ProductOption", "shop.DiscountCode",
+       "shop.Sale", "shop.Order")), 
+    (_("Embroidery"), ("the_cb.Embroidery")),
+    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Users", ("auth.User", "auth.Group",)),
+)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -142,25 +151,45 @@ PAGE_MENU_TEMPLATES = (
 # field instance. When specifying the field class, the path
 # ``django.models.db.`` can be omitted for regular Django model fields.
 #
-# EXTRA_MODEL_FIELDS = (
-#     (
-#         # Dotted path to field.
-#         "mezzanine.blog.models.BlogPost.image",
-#         # Dotted path to field class.
-#         "somelib.fields.ImageField",
-#         # Positional args for field class.
-#         (_("Image"),),
-#         # Keyword args for field class.
-#         {"blank": True, "upload_to": "blog"},
-#     ),
-#     # Example of adding a field to *all* of Mezzanine's content types:
-#     (
-#         "mezzanine.pages.models.Page.another_field",
-#         "IntegerField", # 'django.db.models.' is implied if path is omitted.
-#         (_("Another name"),),
-#         {"blank": True, "default": 1},
-#     ),
-# )
+EXTRA_MODEL_FIELDS = (
+    (
+    "cartridge.shop.models.Product.desire_monogram",
+    "BooleanField",
+    ("Monogram the product",),
+    {"help_text": "monogram on it", "default": False, "max_length": 16}
+    ),
+    (
+    "cartridge.shop.models.CartItem.personalization",
+    "ForeignKey",
+    ("the_cb.Personalization",),
+    dict(parent_link=True, auto_created=True, primary_key=False, serialize=False, null=True),
+    ),
+    (
+    "cartridge.shop.models.CartItem.desire_monogram",
+    "BooleanField",
+    ("Monogram the product",),
+    {"help_text": "monogram on it", "default": False, "max_length": 16}
+    ),
+    (
+    "cartridge.shop.models.OrderItem.desire_monogram",
+    "BooleanField",
+    ("Monogram the product",),
+    {"help_text": "monogram on it", "default": False, "max_length": 16}
+    ),
+    (
+    "cartridge.shop.models.OrderItem.personalization",
+    "ForeignKey",
+    ("the_cb.Personalization",),
+    dict(parent_link=True, auto_created=True, primary_key=False, serialize=False, null=True),
+    ),
+    # Example of adding a field to *all* of Mezzanine's content types:
+    #(
+    #    "mezzanine.pages.models.Page.another_field",
+    #    "IntegerField", # 'django.db.models.' is implied if path is omitted.
+    #    (_("Another name"),),
+    #    {"blank": True, "default": 1},
+    #),
+)
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
@@ -291,6 +320,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
+    "the_cb",
     "cb_theme",
     "django.contrib.admin",
     "django.contrib.auth",

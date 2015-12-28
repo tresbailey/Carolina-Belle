@@ -1,5 +1,5 @@
 {% extends "shop/base.html" %}
-{% load mezzanine_tags shop_tags rating_tags i18n %}
+{% load mezzanine_tags shop_tags rating_tags i18n personalization_tags %}
 
 {% block meta_title %}{{ product.meta_title }}{% endblock %}
 
@@ -80,8 +80,15 @@
             <div class="product-inputs">
                 {% csrf_token %}
                 {% fields_for add_product_form %}
+
             </div>
             <div class="product-buttons">
+                {% if product.desire_monogram %}
+                {% include "personalization.html" %}
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#persModal">
+                    {% trans "Personalize" %}
+                </button>
+                {% endif %}
                 <input type="submit" class="btn btn-primary btn-lg" name="add_cart" value="{% trans "Buy" %}">
                 {% if settings.SHOP_USE_WISHLIST %}
                 <input type="submit" class="btn btn-default" name="add_wishlist" value="{% trans "Save for later" %}">

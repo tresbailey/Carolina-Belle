@@ -1,0 +1,10 @@
+{% load mezzanine_tags shop_tags i18n future %}
+
+Personalize this item:
+<div class="personalization-wrap">
+    <form method="post" id="add_personal" class="form-horizontal form-personal">
+        {% personalize_product_form as form %}
+        {% fields_for form %}
+        <input type="submit" class="btn btn-primary btn-lg" name="add_cart" value="{% trans "Add Personalization" %}">
+    </form>
+</div>

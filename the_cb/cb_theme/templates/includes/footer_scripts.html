@@ -21,4 +21,19 @@ $(function() {
 if ($('nav.link-lockup').length > 1) {
     $('.primary-content').css('padding-top', '15rem');
 }
+$(document).ready(function() {
+    $("#add_pers").on('click', function() {
+        var $form = $('<form>', {
+            action: '/personalization/',
+            method: 'post'
+        });
+        $.each($("#fake-form-personalization :input"), function(index, input) {
+            $form.append(input);
+        });
+        $.post($form.attr('action'), $form.serialize()).success(function(data, status, xhr) {
+            $("input[name=personalization_id]").val(data.personalization_id);
+            
+        });
+    });
+});
 </script>
