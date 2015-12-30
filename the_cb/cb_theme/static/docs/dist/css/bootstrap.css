@@ -7243,7 +7243,8 @@ button > i.fa-cart-plus {
 }
 
 .cart-container {
-  font-family: sans-serif;
+  position: relative;
+  font-family: Georgia;
 }
 
 .cart-container > .fa-stacker {
@@ -7263,6 +7264,60 @@ button > i.fa-cart-plus {
 .table-striped tbody tr:first-child,
 .table-striped tbody tr:last-child {
   background-color: #f067a6;
+}
+
+.form-actions {
+  background-color: inherit;
+  border: none;
+}
+
+.full-page-padded {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  padding: 1rem;
+          flex-direction: column;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+}
+
+.full-page-padded .checkout-confirmation {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+          flex-direction: column;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+}
+
+.full-page-padded .checkout-billing {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  padding-top: 3rem;
+          flex-direction: row;
+
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
 }
 
 @media all and (max-width: 850px) {

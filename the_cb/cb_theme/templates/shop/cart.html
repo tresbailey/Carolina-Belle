@@ -11,7 +11,7 @@
 
 {% block main %}
 {% if request.cart.has_items %}
-<form method="post" class="form-cart form-shop">
+<form method="post" class="full-page-padded checkout-sections form-cart form-shop">
 {% csrf_token %}
 {% if cart_formset.errors %}
 <div class="control-group error">

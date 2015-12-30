@@ -4,17 +4,17 @@
 {% block fields %}
 {% if request.cart.has_items %}
 
-<fieldset class="confirmation">
-	<legend>{% trans "Billing Details" %}</legend>
+<div class="confirmation">
+	<h3>{% trans "Billing Details" %}</h3>
     <ul class="unstyled">
 	    {% for field, value in form.billing_detail_fields.values %}
         <li><label>{{ field }}:</label> {{ value }}</li>
 	    {% endfor %}
 	</ul>
-</fieldset>
+</div>
 
-<fieldset class="confirmation">
-	<legend>{% trans "Shipping Details" %}</legend>
+<div class="confirmation">
+	<h3>{% trans "Shipping Details" %}</h3>
 	<ul class="unstyled">
 	    {% for field, value in form.shipping_detail_fields.values %}
         <li><label>{{ field }}:</label> {{ value }}</li>
@@ -23,7 +23,7 @@
         <li><label>{{ field }}:</label> {{ value }}</li>
 	    {% endfor %}
 	</ul>
-</fieldset>
+</div>
 {% if settings.SHOP_PAYMENT_STEP_ENABLED %}
 {% comment %}
 <br style="clear:both;">

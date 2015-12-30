@@ -336,7 +336,8 @@ button > i.fa-cart-plus {
 }
 
 .cart-container {
-  font-family: sans-serif;
+  position: relative;
+  font-family: Georgia;
 }
 
 .cart-container > .fa-stacker {
@@ -356,6 +357,28 @@ button > i.fa-cart-plus {
 .table-striped tbody tr:first-child,
 .table-striped tbody tr:last-child {
     background-color: $cb-pink;
+}
+
+.form-actions {
+  background-color: inherit;
+  border: none;
+}
+
+.full-page-padded {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .checkout-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkout-billing {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3rem;
+  }
 }
 
 @media all and (max-width: 850px) {

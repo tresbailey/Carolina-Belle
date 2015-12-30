@@ -56,7 +56,7 @@ def product_add_init(self, *args, **kwargs):
     """
     original_product_add_init(self, *args, **kwargs)
     if self._product:
-        self.fields['personalization_id'] = forms.IntegerField()
+        self.fields['personalization_id'] = forms.IntegerField(required=False)
         self.fields['personalization_id'].widget = forms.HiddenInput()
 AddProductForm.__init__ = product_add_init
 
@@ -155,8 +155,6 @@ def setup(self, request):
     if self.tax_total is not None:
         self.total += Decimal(self.tax_total)
     self.save()  # We need an ID before we can add related items.
-    import pdb
-    pdb.set_trace()
     for item in request.cart:
         product_fields = [f.name for f in SelectedProduct._meta.fields]
         item_dict = dict([(f, getattr(item, f)) for f in product_fields])
