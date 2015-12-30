@@ -7243,8 +7243,7 @@ button > i.fa-cart-plus {
 }
 
 .cart-container {
-  position: relative;
-  font-family: Georgia;
+  font-family: sans-serif;
 }
 
 .cart-container > .fa-stacker {

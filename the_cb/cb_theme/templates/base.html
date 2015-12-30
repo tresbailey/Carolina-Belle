@@ -54,11 +54,11 @@
         <div class="search-lockup">
                 {% search_form "all" %}
             {% if request.user.is_authenticated %}
-            <a href="{% url "logout" %}?next={{ request.path }}" class="cart-container">Logout</a>
+            <a href="{% url "logout" %}?next={{ request.path }}">Logout</a>
             {% else %}
-            <a href="{% url "login" %}?next={{ request.path }}" data-toggle="modal" data-target="#loginModal"
-                    class="cart-container">Login</a> or <a href="{% url "signup" %}?next={{ request.path }}" data-toggle="modal" data-target="#signupModal"
-                    class="cart-container">Register</a>
+            <a href="{% url "login" %}?next={{ request.path }}" data-toggle="modal" data-target="#loginModal">Login</a> 
+            or 
+            <a href="{% url "signup" %}?next={{ request.path }}" data-toggle="modal" data-target="#signupModal">Register</a>
             {% endif %}
         </div>    
         <div class="lockup-logo">
