@@ -380,7 +380,8 @@ button > i.fa-cart-plus {
       }
       .lockup-link-item {
         display: flex;
-        min-height: 1rem;
+        flex: 1;
+        min-height: 2.5rem;
         &.divider-vertical {
           display: none;
         }
