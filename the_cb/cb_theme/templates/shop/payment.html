@@ -3,7 +3,9 @@
 
 {% block fields %}
 {% if request.cart.has_items %}
-{% include "shop/includes/payment_fields.html" %}
+<div style="display: none">
 {% fields_for form.other_fields %}
+</div>
+{% include "dropin.html" %}
 {% endif %}
 {% endblock %}

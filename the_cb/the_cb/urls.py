@@ -33,6 +33,10 @@ urlpatterns += patterns('',
         name="shop_order_history"),
     url("^personalization/", "the_cb.views.personalization", name="personalize_product_form"),
 
+    url("^payments/clientToken", "the_cb.paypal_views.client_token", name="get_client_token_form"),
+    url("^payments/pay", "the_cb.paypal_views.send_payment", name="get_client_token_form"),
+    url("^payments/nonce", "the_cb.paypal_views.save_nonce", name="get_client_token_form"),
+
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 

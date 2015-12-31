@@ -1,6 +1,6 @@
 from copy import deepcopy
 from decimal import Decimal
-from cartridge.shop.forms import AddProductForm
+from cartridge.shop.forms import AddProductForm, OrderForm
 from cartridge.shop.fields import OptionField
 from cartridge.shop.models import Cart, Order, SelectedProduct
 from django import forms
@@ -59,6 +59,16 @@ def product_add_init(self, *args, **kwargs):
         self.fields['personalization_id'] = forms.IntegerField(required=False)
         self.fields['personalization_id'].widget = forms.HiddenInput()
 AddProductForm.__init__ = product_add_init
+
+
+order_original_init = deepcopy(OrderForm.__init__)
+def order_new_init(self, request, step, data=None, initial=None, errors=None):
+    self.declared_fields['card_number'].required = False
+    self.declared_fields['card_name'].required = False
+    self.declared_fields['card_type'].required = False
+    self.declared_fields['card_ccv'].required = False
+    order_original_init(self, request, step, data, initial, errors)
+OrderForm.__init__ = order_new_init
 
 
 def product_add_clean(self):
@@ -163,3 +173,4 @@ def setup(self, request):
         created.save()
         
 Order.setup = setup
+

@@ -7320,6 +7320,20 @@ button > i.fa-cart-plus {
       -ms-flex-direction: row;
 }
 
+.full-page-padded .checkout-billing #payment-grouping {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  padding-top: 2rem;
+          flex-direction: column;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+}
+
 @media all and (max-width: 850px) {
   .primary-content {
     padding-top: 15rem;

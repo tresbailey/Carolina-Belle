@@ -42,17 +42,20 @@ from django.utils.translation import ugettext_lazy as _
 # function ``cartridge.shop.utils.set_shipping``.
 # SHOP_HANDLER_BILLING_SHIPPING = \
 #                       "cartridge.shop.checkout.default_billship_handler"
+SHOP_HANDLER_TAX = "the_cb.paypal_views.client_token"
 
 # Dotted package path and name of the function that
 # is called once an order is successful and all of the order
 # object's data has been created. This is where any custom order
 # processing should be implemented.
 # SHOP_HANDLER_ORDER = "cartridge.shop.checkout.default_order_handler"
+#SHOP_HANDLER_ORDER = "the_cb.paypal_views.client_token"
 
 # Dotted package path and name of the function that
 # is called on submit of the payment checkout step. This is where
 # integration with a payment gateway should be implemented.
 # SHOP_HANDLER_PAYMENT = "cartridge.shop.checkout.default_payment_handler"
+SHOP_HANDLER_PAYMENT = "the_cb.paypal_views.send_payment"
 
 # Sequence of value/name pairs for order statuses.
 # SHOP_ORDER_STATUS_CHOICES = (
@@ -314,12 +317,14 @@ ROOT_URLCONF = "%s.urls" % PROJECT_APP
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
+APPEND_SLASH=False
 
 ################
 # APPLICATIONS #
 ################
 
 INSTALLED_APPS = (
+    "paypal",
     "the_cb",
     "cb_theme",
     "django.contrib.admin",

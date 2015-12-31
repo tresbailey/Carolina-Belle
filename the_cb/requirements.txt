@@ -1,5 +1,6 @@
 beautifulsoup4==4.4.0
 bleach==1.4.2
+braintree==3.23.0
 Cartridge==0.10.0
 chardet==2.3.0
 Django==1.8.4

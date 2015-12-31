@@ -378,6 +378,12 @@ button > i.fa-cart-plus {
     display: flex;
     flex-direction: row;
     padding-top: 3rem;
+
+    #payment-grouping {
+        display: flex;
+        flex-direction: column;
+        padding-top: 2rem;
+    }
   }
 }
 

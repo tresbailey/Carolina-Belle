@@ -54,5 +54,6 @@
 
 {% for field in form %}{{ field }}{% endfor %}
 
+<input type=hidden name="payment_method_nonce" value="{{ request.session.payment_nonce }}">
 {% endif %}
 {% endblock %}

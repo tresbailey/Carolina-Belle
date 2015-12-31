@@ -1,0 +1,32 @@
+{% load shop_tags mezzanine_tags i18n future %}
+<form id="checkout" name="paymentForm" method="post" action="/payments/pay">
+  {% csrf_token %}
+  <div id="payment-grouping">
+      <div id="payment-form"></div>
+      <input type="hidden" name="payment_method_nonce">
+      <input type="submit" value="Pay With Card">
+  </div>
+</form>
+
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script>
+// We generated a client token for you so you can test out this code
+// immediately. In a production-ready integration, you will need to
+// generate a client token on your server (see section below).
+var clientToken = "{{ request.session.clientToken }}";
+
+braintree.setup(clientToken, "dropin", {
+  container: "payment-form",
+  onPaymentMethodReceived: function (obj) {
+    // Do some logic in here.
+    // When you're ready to submit the form:
+    //checkoutForm.action = '/payments/pay';
+    //$('input[name=payment_method_nonce]').val(obj.nonce)
+    $.post('/payments/nonce', {payment_method_nonce: obj.nonce, csrfmiddlewaretoken: checkoutForm.csrfmiddlewaretoken[0].value}).success(function(data, status, xhr) {
+        checkoutForm.submit();
+    }).fail(function(data, status, xhr) {
+        console.log(status);
+    });
+  }
+});
+</script>

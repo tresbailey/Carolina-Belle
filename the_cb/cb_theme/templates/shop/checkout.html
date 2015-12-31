@@ -51,7 +51,7 @@ $(function() {$('.middle :input:visible:enabled:first').focus();});
     </div>
     {% endif %}
 
-    <form method="post" id="checkout-form" class="form-horizontal form-shop">
+    <form method="post" name="checkoutForm" id="checkout-form" class="form-horizontal form-shop">
         <div class="checkout-billing">
             {% csrf_token %}
 
@@ -74,7 +74,9 @@ $(function() {$('.middle :input:visible:enabled:first').focus();});
                 {% if request.cart.has_items %}
                     <div class="form-actions clearfix">
                         <div class="form-actions-wrap">
+                        {% if not CHECKOUT_STEP_PAYMENT %}
                         <input type="submit" class="btn btn-large btn-primary" value="{% trans "Next" %}">
+                        {% endif %}
                         {% if not CHECKOUT_STEP_FIRST %}
                         <input type="submit" class="btn btn-large" name="back" value="{% trans "Back" %}">
                         {% endif %}
