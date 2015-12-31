@@ -34,7 +34,7 @@ from django.utils.translation import ugettext_lazy as _
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-# SHOP_CURRENCY_LOCALE = ""
+SHOP_CURRENCY_LOCALE = "en_US"
 
 # Dotted package path and name of the function that
 # is called on submit of the billing/shipping checkout step. This
