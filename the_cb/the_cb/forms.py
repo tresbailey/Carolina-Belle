@@ -11,6 +11,7 @@ from django.forms.forms import BoundField
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.utils.encoding import smart_text, force_text
 
+from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from the_cb.models import Personalization, PersonalizationOption
 
@@ -20,6 +21,7 @@ class PersonalizationForm(forms.ModelForm):
     class Meta:
         model = Personalization
         fields = ("value",)
+        exclude=['embroidery_type']
     
     def __init__(self, *args, **kwargs):
         super(PersonalizationForm, self).__init__(*args, **kwargs)
@@ -29,7 +31,8 @@ class PersonalizationForm(forms.ModelForm):
             return
         option_names, option_labels = list(zip(*[(f.name, f.verbose_name)
             for f in option_fields]))
-        self.fields['value'] = forms.CharField(label=_('Embroidery Text'))
+        self.fields['value'] = forms.CharField(label=_('Value'), widget=forms.HiddenInput())
+        self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
         for i, name in enumerate(option_fields):
             if name.name in option_choices:
                 field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name])

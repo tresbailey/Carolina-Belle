@@ -36,6 +36,7 @@ class Personalization(models.Model):
     options = models.ManyToManyField("PersonalizationOption", blank=True,
                                      verbose_name=_("Personalization types"),
                                      related_name="personalization_selections")
+    embroidery_type = models.IntegerField(choices=settings.CB_EMBROIDERY_TYPES)
 
     @classmethod
     def option_fields(cls):

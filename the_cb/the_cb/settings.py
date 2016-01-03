@@ -87,10 +87,17 @@ SHOP_OPTION_TYPE_CHOICES = (
 
  # Sequence of name/value pairs for types of embroidery/personalization options
 CB_EMBROIDERY_CHOICES = (
-    (1, "Embroidery Type"),
-    (2, "Embroidery Size"),
-    (3, "Embroidery Thread Color"),
-    (4, "Embroidery Font")
+    #(1, "Embroidery Type"),
+    (2, "Size"),
+    (3, "Thread Color"),
+    (4, "Font")
+)
+
+CB_EMBROIDERY_TYPES = (
+    (1, 'None'),
+    (2, 'Name'),
+    (3, 'Initials'),
+    (4, 'Monogram')
 )
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that

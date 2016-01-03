@@ -253,16 +253,17 @@ footer {
 }
 
 
-@mixin graphical-link-overlay() {
+@mixin graphical-link-overlay($box-height: 10rem, $box-padding: initial) {
   display: flex;
   width: 100%;
-  height: 10rem;
+  height: $box-height;
   background-color: $cb-pink;
   opacity: 0.8;
   color: $cb-blue;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  padding: $box-padding;
   div {
     opacity: 1;
   }
@@ -387,6 +388,20 @@ button > i.fa-cart-plus {
   }
 }
 
+#personalize-product {
+    display: flex;
+    flex-direction: row;
+
+    #personalization-types {
+        flex-basis: 10rem;
+    }
+    #personalization-form-fields {
+        .figure-caption {
+          @include graphical-link-overlay(initial, 1rem);
+        }
+    }
+}
+
 @media all and (max-width: 850px) {
   .primary-content {
     padding-top: 15rem;
@@ -477,6 +492,10 @@ button > i.fa-cart-plus {
     .figure-caption {
       @include graphical-link-overlay();
     }
+  }
+  
+  #personalize-product {
+    flex-direction: column;
   }
 }
 

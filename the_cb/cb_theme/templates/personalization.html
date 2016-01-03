@@ -1,24 +1,39 @@
 {% load mezzanine_tags shop_tags rating_tags i18n personalization_tags %}
 
-<!-- <form action="/personalization/" method="post" id="add_personal" class="form-horizontal form-personal"> -->
-<div class="modal fade" id="persModal" tabindex="-1" role="dialog" aria-labelledby="persModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
-        <h4 class="modal-title" id="persModalLabel">Personalize Your Purchase</h4>
-      </div>
-      <div id="fake-form-personalization" class="modal-body">
-            {% personalize_product_form as form %}
-            {% fields_for form %}
-      </div>
-      <div class="modal-footer">
-        <input type="button" class="btn btn-primary btn-lg" name="add_pers" id="add_pers" value="{% trans "Add Personalization" %}" data-dismiss="modal">
-      </div>
-    </div>
-  </div>
+<h4 class="modal-title" id="persModalLabel">Personalize This Item</h4>
 </div>
-<!--</form>-->
+<div id="personalize-product">
+<div id="personalization-types">
+    <div class="radio">
+      <label>
+        <input type="radio" name="embroidery_type" id="embroidery_none_choice" value="1">
+        None
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="embroidery_type" id="embroidery_name_choice" value="2">
+        Name
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="embroidery_type" id="embroidery_initials_choice" value="3">
+       Initials
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="embroidery_type" id="embroidery_monogram_choice" value="4">
+        Monogram
+      </label>
+    </div>
+</div>
+<div id="personalization-form-fields">
+    {% personalize_product_form as form %}
+    {% fields_for form template="includes/personalization_form_fields.html" %}
+    <div id="personalization-not-chosen" class="figure-caption" style="display: none">
+        You have selected to not personalize this item.  Please ensure that you do not wish to have your item personalized
+    </div>
+</div>
+</div>
