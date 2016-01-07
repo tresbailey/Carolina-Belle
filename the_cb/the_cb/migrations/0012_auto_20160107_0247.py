@@ -7,7 +7,7 @@ import mezzanine.core.fields
 import cartridge.shop.fields
 
 
-class AddExtraField(migrations.AlterField):
+class AddExtraField(migrations.AddField):
 
     def __init__(self, *args, **kwargs):
         if 'app_label' in kwargs:
@@ -28,14 +28,47 @@ class AddExtraField(migrations.AlterField):
             self.app_label or app_label, schema_editor, from_state, to_state)
 
 
+class ChangeExistingField(migrations.AlterField):
+
+    def __init__(self, *args, **kwargs):
+        if 'app_label' in kwargs:
+            self.app_label = kwargs.pop('app_label')
+        else:
+            self.app_label = None
+        super(ChangeExistingField, self).__init__(*args, **kwargs)
+
+    def state_forwards(self, app_label, state):
+        super(ChangeExistingField, self).state_forwards(self.app_label or app_label, state)
+
+    def database_forwards(self, app_label, schema_editor, from_state, to_state):
+        super(ChangeExistingField, self).database_forwards(
+            self.app_label or app_label, schema_editor, from_state, to_state)
+
+    def database_backwards(self, app_label, schema_editor, from_state, to_state):
+        super(ChangeExistingField, self).database_backwards(
+            self.app_label or app_label, schema_editor, from_state, to_state)
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shop', '0011_auto_20151010_1429'),
+        ('the_cb', '0004_auto_20160107_0220'),
     ]
 
     operations = [
         AddExtraField(
+            model_name='productvariation',
+            name='option17',
+            field=cartridge.shop.fields.OptionField(max_length=50, null=True, verbose_name='Style'),
+            app_label='shop'
+        ),
+        AddExtraField(
+            model_name='productvariation',
+            name='option18',
+            field=cartridge.shop.fields.OptionField(max_length=50, null=True, verbose_name='Color'),
+            app_label='shop'
+        ),
+        ChangeExistingField(
             model_name='productoption',
             name='type',
             app_label='shop',
