@@ -54,5 +54,56 @@ $(document).ready(function() {
             $("#monogram-value-fields").show();
         }
     });
+
+    $('#add_cart').click( function() {
+/*        var $form = $('<form>', {
+            action: '/personalization/',
+            method: 'post'
+        });
+        $.each($("#fake-form-personalization :input"), function(index, input) {
+            $form.append(input);
+        });
+        $.post($form.attr('action'), $form.serialize()).success(function(data, status, xhr) {
+            $("input[name=personalization_id]").val(data.personalization_id);
+            $('#add-cart').submit();
+            
+        });
+*/
+        $.each($("#fake-form-personalization :input"), function(index, input) {
+            var $form = $('#add-cart');
+            $form.append(input);
+        });
+        switch ($('input:radio[name=embroidery_type]:checked').val()) {
+            case '2':
+                // Name Selected
+                $('#id_value').val($('input[name=name-value]').val());
+                $('input[name=embroidery_type]').val(2);
+                break;
+            case '3':
+                // Initials selected
+                $('#id_value').val(
+                    $('input[name=initials-first-initial]').val() +'-'+
+                    $('input[name=initials-middle-initial]').val() +'-'+
+                    $('input[name=initials-last-initial]').val()
+                );
+                $('input[name=embroidery_type]').val(3);
+                break;
+            case '4':
+                // Monogram selected
+                $('#id_value').val(
+                    $('input[name=monogram-first-initial]').val() +'-'+
+                    $('input[name=monogram-last-initial]').val() +'-'+
+                    $('input[name=monogram-middle-initial]').val()
+                );
+                $('input[name=embroidery_type]').val(4);
+                break;
+            default:
+                // No personalization
+                $('input[name=embroidery_type]').val(1);
+                break;
+        }
+        $('#add-cart').submit();
+        
+    });
 });
 </script>

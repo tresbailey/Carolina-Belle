@@ -1,6 +1,6 @@
 /*!
  * Bootstrap v4.0.0-alpha (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
@@ -7149,6 +7149,7 @@ footer {
   display:         flex;
   width: 100%;
   height: 10rem;
+  padding: initial;
   font-size: 2rem;
   color: #0d024c;
   background-color: #f067a6;
@@ -7334,6 +7335,60 @@ button > i.fa-cart-plus {
       -ms-flex-direction: column;
 }
 
+#personalize-product {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+          flex-direction: row;
+
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+}
+
+#personalize-product #personalization-types {
+  -webkit-flex-basis: 10rem;
+  -ms-flex-preferred-size: 10rem;
+          flex-basis: 10rem;
+}
+
+#personalize-product #personalization-form-fields .figure-caption {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  width: 100%;
+  height: initial;
+  padding: 1rem;
+  font-size: 2rem;
+  color: #0d024c;
+  background-color: #f067a6;
+  opacity: .8;
+
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+}
+
+#personalize-product #personalization-form-fields .figure-caption div {
+  opacity: 1;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  border-radius: 0;
+
+     -moz-appearance: none;
+          appearance: none;
+}
+
 @media all and (max-width: 850px) {
   .primary-content {
     padding-top: 15rem;
@@ -7480,6 +7535,7 @@ button > i.fa-cart-plus {
     display:         flex;
     width: 100%;
     height: 10rem;
+    padding: initial;
     font-size: 2rem;
     color: #0d024c;
     background-color: #f067a6;
@@ -7496,6 +7552,14 @@ button > i.fa-cart-plus {
   }
   .graphical-link-item .figure-caption div {
     opacity: 1;
+  }
+  #personalize-product {
+            flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */

@@ -7381,6 +7381,14 @@ button > i.fa-cart-plus {
   opacity: 1;
 }
 
+.form-control {
+  -webkit-appearance: none;
+  border-radius: 0;
+
+     -moz-appearance: none;
+          appearance: none;
+}
+
 @media all and (max-width: 850px) {
   .primary-content {
     padding-top: 15rem;

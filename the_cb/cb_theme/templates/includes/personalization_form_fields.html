@@ -12,54 +12,31 @@
 <input type="hidden" name="referrer" value="{{ request.META.HTTP_REFERER }}">
 {% csrf_token %}
 {% endnevercache %}
-
 <div id="name-value-fields" class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="name-value">
-            Name to Use
-        </label>
-        <input type="text" name="name-value" style="width: initial">
-    </fieldset>
+    <label class="control-label col-md-10" for="name-value">
+        Name to Use
+    </label>
+    <input type="text" name="name-value" style="width: initial">
 </div>
-<div id="initials-value-fields" class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="initials-first-initial">
-            First Name
-        </label>
-        <input type="text" name="initials-first-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="initials-middle-initial">
-            Middle Name
-        </label>
-        <input type="text" name="initials-middle-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="initials-last-initial" length=1>
-            Last Name
-        </label>
-        <input type="text" name="initials-last-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
+<div id="initials-value-fields" class="value-fields control-group">
+    <label class="control-label" for="initials-first-initial">
+        First, Middle, Last
+    </label>
+    <div>
+    <input type="text" name="initials-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="initials-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="initials-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    </div>
 </div>
 <div id="monogram-value-fields" class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="monogram-first-initial">
-            First Name
-        </label>
-        <input type="text" name="monogram-first-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="monogram-last-initial" length=1>
-            Last Name
-        </label>
-        <input type="text" name="monogram-last-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
-    <fieldset class="form-group">
-        <label class="control-label col-md-12" for="monogram-middle-initial">
-            Middle Name
-        </label>
-        <input type="text" name="monogram-middle-initial" size=1 maxlength=1 style="width: initial">
-    </fieldset>
+    <label class="control-label" for="monogram-first-initial">
+        First, Last, Middle
+    </label>
+    <div>
+    <input type="text" name="monogram-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="monogram-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="monogram-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    </div>
 </div>
 <div id="personalization-fields-group">
 {% for field in form_for_fields %}
@@ -69,22 +46,20 @@
 
 <div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
     {% if field.errors %} error{% endif %}">
-    <div class="form-group row">
-        <label class="control-label col-md-6" for="{{ field.auto_id }}">
+    <div class="form-group">
+        <label class="control-label" for="{{ field.auto_id }}">
             {{ field.label }}
         </label>
-        <div class="controls col-md-6">
-            {{ field }}
-            {% if field.errors %}
-            <span class="help-inline">
-                {% for e in field.errors %}
-                {% if not forloop.first %} / {% endif %}{{ e }}
-                {% endfor %}
-            </span>
-            {% else %}
-            <span class="help-inline">{{ field.help_text }}</span>
-            {% endif %}
-        </div>
+        {{ field }}
+        {% if field.errors %}
+        <span class="help-inline">
+            {% for e in field.errors %}
+            {% if not forloop.first %} / {% endif %}{{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+        <span class="help-inline">{{ field.help_text }}</span>
+        {% endif %}
     </div>
 </div>
 {% endif %}

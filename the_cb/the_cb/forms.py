@@ -1,3 +1,7 @@
+from cartridge.shop import views
+
+
+
 from copy import deepcopy
 from decimal import Decimal
 from cartridge.shop.forms import AddProductForm, OrderForm
@@ -14,6 +18,7 @@ from django.utils.encoding import smart_text, force_text
 from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from the_cb.models import Personalization, PersonalizationOption
+from the_cb.widgets import BootstrapSelect
 
 class PersonalizationForm(forms.ModelForm):
     """
@@ -35,11 +40,11 @@ class PersonalizationForm(forms.ModelForm):
         self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
         for i, name in enumerate(option_fields):
             if name.name in option_choices:
-                field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name])
+                field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name], widget=BootstrapSelect())
                 self.fields['%s' % name] = field
 
     def save(self):
-        model = Personalization.objects.create(value=self.data['value'])
+        model = Personalization.objects.create(value=self.data['value'], embroidery_type=self.data['embroidery_type'])
         prefix = 'the_cb.Personalization.option'
         model.value = self.data['value']
         for field, value in self.data.items():
@@ -50,6 +55,26 @@ class PersonalizationForm(forms.ModelForm):
                         break
         model.save()
         return model
+
+
+old_product_view = deepcopy(views.product)
+def product_view(request, slug, template="shop/product.html", form_class=AddProductForm, extra_context=None):
+    """
+    Display a product - convert the product variations to JSON as well as
+    handling adding the product to either the cart or the wishlist.
+    """
+    if request.method == 'POST':
+        try:
+            personalize_product = PersonalizationForm(request.POST)
+            if personalize_product.is_valid():
+                model = personalize_product.save() 
+                copied = request.POST.copy()
+                copied['personalization_id'] = model.id
+                request.POST = copied
+        except AttributeError:
+            pass
+    return old_product_view(request, slug, template, form_class, extra_context)
+views.product = product_view
 
 
 original_product_add_init = deepcopy(AddProductForm.__init__) 
@@ -143,7 +168,6 @@ def add_item_mod(self, variation, quantity):
     item.quantity += quantity
     item.save()
 Cart.add_item = add_item_mod
-
 
 def setup(self, request):
     """

@@ -25,6 +25,8 @@ if settings.USE_MODELTRANSLATION:
         url('^i18n/$', 'django.views.i18n.set_language', name='set_language'),
     )
 
+_slash = "/" if settings.APPEND_SLASH else ""
+
 urlpatterns += patterns('',
 
     # Cartridge URLs.
@@ -36,6 +38,7 @@ urlpatterns += patterns('',
     url("^payments/clientToken", "the_cb.paypal_views.client_token", name="get_client_token_form"),
     url("^payments/pay", "the_cb.paypal_views.send_payment", name="get_client_token_form"),
     url("^payments/nonce", "the_cb.paypal_views.save_nonce", name="get_client_token_form"),
+    url("^product/(?P<slug>.*)%s$" % _slash, "the_cb.forms.product_view", name="shop_product"),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.

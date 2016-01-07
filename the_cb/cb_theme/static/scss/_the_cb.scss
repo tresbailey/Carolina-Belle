@@ -402,6 +402,11 @@ button > i.fa-cart-plus {
     }
 }
 
+.form-control {
+    appearance: none;
+    border-radius: 0px;
+}
+
 @media all and (max-width: 850px) {
   .primary-content {
     padding-top: 15rem;
