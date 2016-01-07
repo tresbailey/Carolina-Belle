@@ -82,7 +82,9 @@ SHOP_OPTION_TYPE_CHOICES = (
      (13, "Linen Bib Fabric"),
      (14, "Bloomer Sizes"),
      (15, "College Bloomer Teams"),
-     (16, "Thread Colors")
+     (16, "Thread Colors"),
+     (17, "Style"),
+     (18, "Color")
  )
 
  # Sequence of name/value pairs for types of embroidery/personalization options
