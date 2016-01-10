@@ -26,3 +26,16 @@ def personalize_product_form(*args):
     """
     return PersonalizationForm()
 
+
+@register.filter
+def name_value_options(personalization, option):
+    for field in personalization.option_fields():
+        if field.name == 'option%s' % option['type']:
+            return "%s: %s" % (field.verbose_name, option['name'])
+    return None
+
+
+@register.filter
+def embroidery_type_val(personalization_type):
+    types = dict(settings.CB_EMBROIDERY_TYPES)
+    return types[personalization_type]

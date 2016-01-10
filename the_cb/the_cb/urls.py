@@ -30,6 +30,7 @@ _slash = "/" if settings.APPEND_SLASH else ""
 urlpatterns += patterns('',
 
     # Cartridge URLs.
+    url("^shop/invoice/(?P<order_id>\d+)%s$" % _slash, "the_cb.forms.order_view", name="shop_invoice"),
     ("^shop/", include("cartridge.shop.urls")),
     url("^account/orders/$", "cartridge.shop.views.order_history",
         name="shop_order_history"),

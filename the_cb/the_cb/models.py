@@ -31,12 +31,24 @@ class PersonalizationMetaclass(ModelBase):
         return super(PersonalizationMetaclass, cls).__new__(*args)
 
 
+class PersonalizationManager(Manager):
+    
+    def get_for_user(self, personalization_id, request):
+        lookup = {"id": personalization_id}
+        if not request.user.is_authenticated():
+            lookup["key"] = request.session.session_key
+        self.get(**lookup)
+        
+
+
 class Personalization(models.Model):
     value = CharField(_("Embroidery Text"), max_length=20, blank=True, null=True)
     options = models.ManyToManyField("PersonalizationOption", blank=True,
                                      verbose_name=_("Personalization types"),
                                      related_name="personalization_selections")
     embroidery_type = models.IntegerField(choices=settings.CB_EMBROIDERY_TYPES)
+
+    objects = PersonalizationManager()
 
     @classmethod
     def option_fields(cls):

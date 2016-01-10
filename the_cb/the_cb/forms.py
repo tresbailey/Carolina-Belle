@@ -77,6 +77,15 @@ def product_view(request, slug, template="shop/product.html", form_class=AddProd
 views.product = product_view
 
 
+old_order_view = deepcopy(views.invoice)
+def order_view(request, order_id, template="shop/order_invoice.html", template_pdf="shop/order_invoice_pdf.html", extra_context=None):
+    order = Order.objects.get_for_user(order_id, request)
+    for item in order.items.iterator():
+        personalization = Personalization.objects.get_for_user(item.personalization.id, request)
+    return old_order_view(request, order_id, template, template_pdf, extra_context)
+views.invoice = order_view
+
+
 original_product_add_init = deepcopy(AddProductForm.__init__) 
 def product_add_init(self, *args, **kwargs):
     """
@@ -194,9 +203,9 @@ def setup(self, request):
     self.save()  # We need an ID before we can add related items.
     for item in request.cart:
         product_fields = [f.name for f in SelectedProduct._meta.fields]
+        product_fields.append('personalization')
         item_dict = dict([(f, getattr(item, f)) for f in product_fields])
         created = self.items.create(**item_dict)
-        created.personalization = item.personalization
         created.save()
         
 Order.setup = setup

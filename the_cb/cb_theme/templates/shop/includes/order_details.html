@@ -1,4 +1,5 @@
 {% load shop_tags i18n %}
+{% load mezzanine_tags shop_tags rating_tags i18n personalization_tags %}
 
 <h1>{{ settings.SITE_TITLE }}</h1>
 
@@ -40,6 +41,7 @@
 		<th align="right">{% trans "Unit Price" %}</th>
 		<th align="right">{% trans "Qty" %}</th>
 		<th align="right">{% trans "Price" %}</th>
+		<th align="right">{% trans "Personalization" %}</th>
 	</tr>
 	{% for item in order.items.all %}
 	<tr>
@@ -47,9 +49,27 @@
     	<td align="right" valign="top">{{ item.unit_price|currency }}</td>
     	<td align="right" valign="top">{{ item.quantity }}</td>
     	<td align="right" valign="top">{{ item.total_price|currency }}</td>
+    	<td align="right" valign="top">
+            <div>
+                Type of Embroidery: {{ item.personalization.embroidery_type|embroidery_type_val }}
+            </div>
+            <div>
+                {{ item.personalization.get_embroidery_type_display }}: {{ item.personalization.value }}
+            </div>
+            {% for option in item.personalization.options.values %}
+                <div>
+                {{item.personalization|name_value_options:option }}
+                </div>
+            {% endfor %}
+        </td>
 	</tr>
 	{% endfor %}
 	<tr>
 	    <td colspan="4" align="right">{% order_totals %}</td>
 	</tr>
+</table>
+<h2>{% trans "Items Ordered" %}</h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="10">
+    <tr>
+    </tr>
 </table>
