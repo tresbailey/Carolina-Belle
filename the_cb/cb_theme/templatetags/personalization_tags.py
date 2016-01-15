@@ -1,8 +1,10 @@
 from __future__ import unicode_literals
 
+from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.utils.datastructures import SortedDict
 
+from cartridge.shop.templatetags.shop_tags import _order_totals
 from mezzanine import template
 from mezzanine.conf import settings
 from mezzanine.accounts import (get_profile_form, get_profile_user_fieldname,
@@ -13,6 +15,13 @@ from the_cb.models import Personalization
 
 register = template.Library()
 
+
+@register.inclusion_tag("shop/includes/order_totals.html", takes_context=True)
+def my_order_totals(context):
+    context = _order_totals(context)
+    context['personalization_total'] = context['request'].session.get('personalization_total', None)
+    context['order_total'] += Decimal(str(context['personalization_total']))
+    return context
 
 
 @register.as_tag

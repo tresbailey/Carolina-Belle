@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from django.utils.translation import ugettext_lazy as _
+from decimal import Decimal
 
 
 ######################
@@ -40,8 +41,8 @@ SHOP_CURRENCY_LOCALE = "en_US"
 # is called on submit of the billing/shipping checkout step. This
 # is where shipping calculation can be performed and set using the
 # function ``cartridge.shop.utils.set_shipping``.
-# SHOP_HANDLER_BILLING_SHIPPING = \
-#                       "cartridge.shop.checkout.default_billship_handler"
+SHOP_HANDLER_BILLING_SHIPPING = \
+                      "the_cb.paypal_views.cb_billship_handler"
 SHOP_HANDLER_TAX = "the_cb.paypal_views.client_token"
 
 # Dotted package path and name of the function that
@@ -49,7 +50,7 @@ SHOP_HANDLER_TAX = "the_cb.paypal_views.client_token"
 # object's data has been created. This is where any custom order
 # processing should be implemented.
 # SHOP_HANDLER_ORDER = "cartridge.shop.checkout.default_order_handler"
-#SHOP_HANDLER_ORDER = "the_cb.paypal_views.client_token"
+SHOP_HANDLER_ORDER = "the_cb.paypal_views.personalization_pricing"
 
 # Dotted package path and name of the function that
 # is called on submit of the payment checkout step. This is where
@@ -101,6 +102,8 @@ CB_EMBROIDERY_TYPES = (
     (3, 'Initials'),
     (4, 'Monogram')
 )
+
+CB_PERSONALIZATION_COST = 10
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
@@ -181,6 +184,12 @@ EXTRA_MODEL_FIELDS = (
     "BooleanField",
     ("Monogram the product",),
     {"help_text": "monogram on it", "default": False, "max_length": 16}
+    ),
+    (
+    "cartridge.shop.models.CartItem.personalization_price",
+    "cartridge.shop.fields.MoneyField",
+    ("Personalization Price",),
+    {"help_text": "price on it", "default": Decimal("0")}
     ),
     (
     "cartridge.shop.models.OrderItem.desire_monogram",

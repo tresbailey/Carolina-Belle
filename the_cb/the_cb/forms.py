@@ -7,7 +7,9 @@ from decimal import Decimal
 from cartridge.shop.forms import AddProductForm, OrderForm
 from cartridge.shop.fields import OptionField
 from cartridge.shop.models import Cart, Order, SelectedProduct
+from cartridge.shop.utils import recalculate_cart
 from django import forms
+from django import template
 from django.db.models.fields import Field
 from django.forms.models import BaseInlineFormSet, ModelFormMetaclass
 from django.forms.models import inlineformset_factory
@@ -18,7 +20,9 @@ from django.utils.encoding import smart_text, force_text
 from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from the_cb.models import Personalization, PersonalizationOption
+from the_cb.paypal_views import personalization_pricing
 from the_cb.widgets import BootstrapSelect
+
 
 class PersonalizationForm(forms.ModelForm):
     """
@@ -57,6 +61,11 @@ class PersonalizationForm(forms.ModelForm):
         return model
 
 
+def cb_recalculate_cart(request):
+    recalculate_cart(request)
+    personalization_pricing(request, None, request.cart)
+
+
 old_product_view = deepcopy(views.product)
 def product_view(request, slug, template="shop/product.html", form_class=AddProductForm, extra_context=None):
     """
@@ -73,7 +82,9 @@ def product_view(request, slug, template="shop/product.html", form_class=AddProd
                 request.POST = copied
         except AttributeError:
             pass
-    return old_product_view(request, slug, template, form_class, extra_context)
+    response = old_product_view(request, slug, template, form_class, extra_context)
+    cb_recalculate_cart(request)
+    return response
 views.product = product_view
 
 
@@ -161,6 +172,7 @@ def add_item_mod(self, variation, quantity):
     if not self.pk:
         self.save()
     kwargs = {"sku": variation.sku, "unit_price": variation.price()}
+    personalized_count = 0
     item, created = self.items.get_or_create(**kwargs)
     if created:
         item.description = force_text(variation)
@@ -168,6 +180,9 @@ def add_item_mod(self, variation, quantity):
         item.url = variation.product.get_absolute_url()
         try:
             item.personalization_id = variation._personalization_id
+            if item.personalization_id is not None and "" <> item.personalization_id:
+                item.personalization_price = 10.00
+                personalized_count += 1
         except AttributeError:
             pass
         image = variation.image
@@ -177,6 +192,7 @@ def add_item_mod(self, variation, quantity):
     item.quantity += quantity
     item.save()
 Cart.add_item = add_item_mod
+
 
 def setup(self, request):
     """
@@ -207,6 +223,8 @@ def setup(self, request):
         item_dict = dict([(f, getattr(item, f)) for f in product_fields])
         created = self.items.create(**item_dict)
         created.save()
+
         
 Order.setup = setup
+
 

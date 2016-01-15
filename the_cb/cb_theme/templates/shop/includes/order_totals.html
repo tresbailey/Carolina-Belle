@@ -25,6 +25,13 @@
 	    </label> {{ shipping_total|currency }}
 	</div>
 	{% endif %}
+	{% if personalization_total %}
+	<div>
+	    <label>
+	    {% trans "Personalizations Cost" %}:
+	    </label> {{ personalization_total|currency }}
+	</div>
+	{% endif %}
 	{% if tax_total %}
 	<div>
 	    <label>
