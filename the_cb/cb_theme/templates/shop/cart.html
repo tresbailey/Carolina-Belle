@@ -29,6 +29,7 @@
 		<th>{% trans "Unit Price" %}</th>
 		<th class="center">{% trans "Qty" %}</th>
 		<th>{% trans "Price" %}</th>
+		<th>{% trans "Personalized" %}</th>
 		<th class="center">{% trans "Remove?" %}</th>
 	</tr>
     {% for form in cart_formset.forms %}
@@ -48,12 +49,13 @@
 		<td>{{ item.unit_price|currency }}</td>
 		<td class="quantity">{{ form.quantity }}</td>
 		<td>{{ item.total_price|currency }}</td>
+        <td><input type="checkbox" disabled {% if item.personalization %}checked{%endif%}>
 		<td class="center">{{ form.DELETE }}</td>
 	</tr>
 	{% endwith %}
 	{% endfor %}
 	<tr class="cart-total">
-		<td colspan="5">{% my_order_totals %}</td>
+		<td colspan="6">{% my_order_totals %}</td>
 		<td>&nbsp;</td>
 	</tr>
 </table>
