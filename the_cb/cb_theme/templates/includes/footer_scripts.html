@@ -24,14 +24,16 @@ if ($('nav.link-lockup').length > 1) {
 
 function set_personal_fields(evnt) {
     var selected = $('input:radio[name=embroidery_type]:checked').val();
-    $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
-    $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
     var basic_value = $("input[name=basic_value]").val();
     switch ($('input:radio[name=embroidery_type]:checked').val()) {
         case '2':
+            if (basic_value) {
+                $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
+            }
             break;
         case '3':
             if (basic_value && !$("input[name=initials-first-initial]").val()) {
+                $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
                 var initials = basic_value.split("-");
                 $('input[name=initials-first-initial]').val(initials[0])
                 $('input[name=initials-middle-initial]').val(initials[1]);
@@ -41,6 +43,7 @@ function set_personal_fields(evnt) {
             break;
         case '4':
             if (basic_value && !$("input[name=monogram-first-initial]").val()) {
+                $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
                 var initials = basic_value.split("-");
                 $('input[name=monogram-first-initial]').val(initials[0])
                 $('input[name=monogram-middle-initial]').val(initials[1]);
@@ -49,10 +52,11 @@ function set_personal_fields(evnt) {
             break;
         default:
             // No personalization
-            $('input[name=embroidery_type]').val(1);
             break;
     }
-    $('#personalization-fields-group').show();
+    if (evnt || basic_value) {
+        $('#personalization-fields-group').show();
+    }
     $(".value-fields").hide();
     $("#personalization-not-chosen").hide();
     if (1 == selected) {
