@@ -2,6 +2,10 @@
 
 <h4 class="modal-title" id="persModalLabel">Personalize This Item</h4>
 </div>
+<a href="#" id="pop"  data-toggle="modal" data-target="#fontModal">
+    <i class="fa fa-caret-right"></i>
+    Monogram Fonts and Colors
+</a>
 <div id="personalize-product">
 <div id="personalization-types">
     <div class="radio">
@@ -37,4 +41,17 @@
         You have selected to not personalize this item.  Please ensure that you do not wish to have your item personalized
     </div>
 </div>
+</div>
+
+<div class="modal fade" id="fontModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 375px">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="/static/assets/font-listing.jpg" id="imagepreview" style="width: 300px;" >
+      </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
 </div>
