@@ -154,7 +154,8 @@ PAGE_MENU_TEMPLATES = (
     (1, _("Top navigation bar"), "pages/menus/primary.html"),
     (2, _("Left-hand tree"), "pages/menus/tree.html"),
     (3, _("Footer"), "pages/menus/footer.html"),
-    (4, _("graphical"), "pages/menus/graphical.html")
+    (4, _("graphical"), "pages/menus/graphical.html"),
+    (5, _("Sub-Footer"), "pages/menus/sub_footer.html")
 )
 
 # A sequence of fields that will be injected into Mezzanine's (or any
@@ -342,6 +343,7 @@ APPEND_SLASH=False
 ################
 
 INSTALLED_APPS = (
+    "newsletter",
     "the_cb",
     "cb_theme",
     "django.contrib.admin",
