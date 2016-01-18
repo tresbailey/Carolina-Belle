@@ -184,7 +184,7 @@ def add_item_mod(self, variation, quantity):
         try:
             item.personalization_id = variation._personalization_id
             if item.personalization_id is not None and "" <> item.personalization_id:
-                item.personalization_price = settings['CB_PERSONALIZATION_COST']
+                item.personalization_price = settings.CB_PERSONALIZATION_COST
                 personalized_count += 1
         except AttributeError:
             pass
