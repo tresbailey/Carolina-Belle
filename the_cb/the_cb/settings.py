@@ -343,7 +343,6 @@ APPEND_SLASH=False
 ################
 
 INSTALLED_APPS = (
-    "newsletter",
     "the_cb",
     "cb_theme",
     "django.contrib.admin",
