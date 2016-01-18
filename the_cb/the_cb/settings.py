@@ -103,7 +103,7 @@ CB_EMBROIDERY_TYPES = (
     (4, 'Monogram')
 )
 
-CB_PERSONALIZATION_COST = 10
+CB_PERSONALIZATION_COST = 8.00
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,

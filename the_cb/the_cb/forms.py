@@ -72,6 +72,8 @@ def product_view(request, slug, template="shop/product.html", form_class=AddProd
     Display a product - convert the product variations to JSON as well as
     handling adding the product to either the cart or the wishlist.
     """
+    if extra_context is None:
+        extra_context = dict()
     if request.method == 'POST':
         try:
             personalize_product = PersonalizationForm(request.POST)
@@ -82,6 +84,7 @@ def product_view(request, slug, template="shop/product.html", form_class=AddProd
                 request.POST = copied
         except AttributeError:
             pass
+    extra_context['personalization_cost'] = Decimal(settings.CB_PERSONALIZATION_COST)
     response = old_product_view(request, slug, template, form_class, extra_context)
     cb_recalculate_cart(request)
     return response
@@ -181,7 +184,7 @@ def add_item_mod(self, variation, quantity):
         try:
             item.personalization_id = variation._personalization_id
             if item.personalization_id is not None and "" <> item.personalization_id:
-                item.personalization_price = 10.00
+                item.personalization_price = settings['CB_PERSONALIZATION_COST']
                 personalized_count += 1
         except AttributeError:
             pass
