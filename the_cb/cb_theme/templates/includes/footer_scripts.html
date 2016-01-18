@@ -24,6 +24,34 @@ if ($('nav.link-lockup').length > 1) {
 
 function set_personal_fields(evnt) {
     var selected = $('input:radio[name=embroidery_type]:checked').val();
+    $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
+    $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
+    var basic_value = $("input[name=basic_value]").val();
+    switch ($('input:radio[name=embroidery_type]:checked').val()) {
+        case '2':
+            break;
+        case '3':
+            if (basic_value && !$("input[name=initials-first-initial]").val()) {
+                var initials = basic_value.split("-");
+                $('input[name=initials-first-initial]').val(initials[0])
+                $('input[name=initials-middle-initial]').val(initials[1]);
+                $('input[name=initials-last-initial]').val(initials[2]);
+                   
+            }
+            break;
+        case '4':
+            if (basic_value && !$("input[name=monogram-first-initial]").val()) {
+                var initials = basic_value.split("-");
+                $('input[name=monogram-first-initial]').val(initials[0])
+                $('input[name=monogram-middle-initial]').val(initials[1]);
+                $('input[name=monogram-last-initial]').val(initials[2]);
+            }
+            break;
+        default:
+            // No personalization
+            $('input[name=embroidery_type]').val(1);
+            break;
+    }
     $('#personalization-fields-group').show();
     $(".value-fields").hide();
     $("#personalization-not-chosen").hide();
@@ -60,19 +88,6 @@ $(document).ready(function() {
     set_personal_fields();
 
     $('#add_cart').click( function() {
-/*        var $form = $('<form>', {
-            action: '/personalization/',
-            method: 'post'
-        });
-        $.each($("#fake-form-personalization :input"), function(index, input) {
-            $form.append(input);
-        });
-        $.post($form.attr('action'), $form.serialize()).success(function(data, status, xhr) {
-            $("input[name=personalization_id]").val(data.personalization_id);
-            $('#add-cart').submit();
-            
-        });
-*/
         $.each($("#fake-form-personalization :input"), function(index, input) {
             var $form = $('#add-cart');
             $form.append(input);
@@ -84,13 +99,21 @@ $(document).ready(function() {
                 $('input[name=embroidery_type]').val(2);
                 break;
             case '3':
-                // Initials selected
-                $('#id_value').val(
-                    $('input[name=initials-first-initial]').val() +'-'+
-                    $('input[name=initials-middle-initial]').val() +'-'+
-                    $('input[name=initials-last-initial]').val()
-                );
-                $('input[name=embroidery_type]').val(3);
+                if ($("#id_value").val() && !$("input[name=initials-first-initial]").val()) {
+                    var initials = $("#id_value").val();
+                    $('input[name=initials-first-initial]').val(initials[0])
+                    $('input[name=initials-middle-initial]').val(initials[1]);
+                    $('input[name=initials-last-initial]').val(initials[2]);
+                       
+                } else {
+                    // Initials selected
+                    $('#id_value').val(
+                        $('input[name=initials-first-initial]').val() +'-'+
+                        $('input[name=initials-middle-initial]').val() +'-'+
+                        $('input[name=initials-last-initial]').val()
+                    );
+                    $('input[name=embroidery_type]').val(3);
+                }
                 break;
             case '4':
                 // Monogram selected

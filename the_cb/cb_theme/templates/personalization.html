@@ -18,7 +18,7 @@
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_initials_choice" value="3" {% if item.personalization.embroidery_type == 4 %}checked{%endif%} >
+        <input type="radio" name="embroidery_type" id="embroidery_initials_choice" value="3" {% if item.personalization.embroidery_type == 3 %}checked{%endif%} >
        Initials
       </label>
     </div>
@@ -28,6 +28,7 @@
         Monogram
       </label>
     </div>
+    <input type="hidden" name="basic_value" value="{{item.personalization.value}}" />
 </div>
 <div id="personalization-form-fields">
     {% personalize_product_form as form %}
