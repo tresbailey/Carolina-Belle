@@ -68,8 +68,8 @@ SHOP_HANDLER_PAYMENT = "the_cb.paypal_views.send_payment"
 # eg Size, Colour. NOTE: Increasing the number of these will
 # require database migrations!
 SHOP_OPTION_TYPE_CHOICES = (
-     (1, "Girl's Size"),
-     (2, "Boy's Size"),
+     (1, "Size"),
+     (2, "Shoe Size"),
      (3, "Gown Color"),
      (4, "Thread Color"),
      (5, "Font"),
