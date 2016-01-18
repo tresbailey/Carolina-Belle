@@ -43,7 +43,7 @@
 			{% endif %}
 		</td>
 		<td class="left">
-		    <a href="{{ item.get_absolute_url }}">{{ item.description }}</a>
+		    <a href="/shop/cart/{{request.cart.id}}/items/{{item.id}}">{{ item.description }}</a>
         </td>
 		<td>{{ item.unit_price|currency }}</td>
 		<td class="quantity">{{ form.quantity }}</td>

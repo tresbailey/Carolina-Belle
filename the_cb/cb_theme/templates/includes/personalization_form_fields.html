@@ -13,10 +13,10 @@
 {% csrf_token %}
 {% endnevercache %}
 <div id="name-value-fields" class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
-    <label class="control-label col-md-10" for="name-value">
+    <label class="control-label col-md-6" style="padding: 0px" for="name-value">
         Name to Use
     </label>
-    <input type="text" name="name-value" style="width: initial">
+    <input type="text" name="name-value" style="width: initial" value="{{ item.personalization.value }}">
 </div>
 <div id="initials-value-fields" class="value-fields control-group">
     <label class="control-label" for="initials-first-initial">

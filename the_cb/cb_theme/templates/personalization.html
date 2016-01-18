@@ -6,25 +6,25 @@
 <div id="personalization-types">
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_none_choice" value="1">
+        <input type="radio" name="embroidery_type" id="embroidery_none_choice" value="1" {% if item.personalization.embroidery_type == 1 %}checked{%endif%} >
         None
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_name_choice" value="2">
+        <input type="radio" name="embroidery_type" id="embroidery_name_choice" value="2" {% if item.personalization.embroidery_type == 2 %}checked{%endif%} >
         Name
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_initials_choice" value="3">
+        <input type="radio" name="embroidery_type" id="embroidery_initials_choice" value="3" {% if item.personalization.embroidery_type == 4 %}checked{%endif%} >
        Initials
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_monogram_choice" value="4">
+        <input type="radio" name="embroidery_type" id="embroidery_monogram_choice" value="4" {% if item.personalization.embroidery_type == 4 %}checked{%endif%} >
         Monogram
       </label>
     </div>

@@ -21,6 +21,23 @@ $(function() {
 if ($('nav.link-lockup').length > 1) {
     $('.primary-content').css('padding-top', '15rem');
 }
+
+function set_personal_fields(evnt) {
+    var selected = $('input:radio[name=embroidery_type]:checked').val();
+    $('#personalization-fields-group').show();
+    $(".value-fields").hide();
+    $("#personalization-not-chosen").hide();
+    if (1 == selected) {
+        $('#personalization-fields-group').hide();
+        $("#personalization-not-chosen").show();
+    } else if (2 == selected) {
+        $("#name-value-fields").show();
+    } else if (3 == selected) {
+        $("#initials-value-fields").show();
+    } else if (4 == selected) {
+        $("#monogram-value-fields").show();
+    }
+}
 $(document).ready(function() {
     $("#add_pers").on('click', function() {
         var $form = $('<form>', {
@@ -38,22 +55,9 @@ $(document).ready(function() {
     $('#personalization-fields-group').hide();
     $(".value-fields").hide();
     $("#personalization-not-chosen").hide();
-    $("input[name=embroidery_type]").change(function(evnt) {
-        var selected = $('input:radio[name=embroidery_type]:checked').val();
-        $('#personalization-fields-group').show();
-        $(".value-fields").hide();
-        $("#personalization-not-chosen").hide();
-        if (1 == selected) {
-            $('#personalization-fields-group').hide();
-            $("#personalization-not-chosen").show();
-        } else if (2 == selected) {
-            $("#name-value-fields").show();
-        } else if (3 == selected) {
-            $("#initials-value-fields").show();
-        } else if (4 == selected) {
-            $("#monogram-value-fields").show();
-        }
-    });
+    $("input[name=embroidery_type]").change(set_personal_fields);
+    
+    set_personal_fields();
 
     $('#add_cart').click( function() {
 /*        var $form = $('<form>', {

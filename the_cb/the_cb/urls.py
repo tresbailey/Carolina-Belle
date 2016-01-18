@@ -31,6 +31,7 @@ urlpatterns += patterns('',
 
     # Cartridge URLs.
     url("^shop/invoice/(?P<order_id>\d+)%s$" % _slash, "the_cb.forms.order_view", name="shop_invoice"),
+    url("^shop/cart/(?P<cart_id>\d+)/items/(?P<item_id>\d+)%s$" % _slash, "the_cb.views.cart_item_view", name="cart_item"),
     ("^shop/", include("cartridge.shop.urls")),
     url("^account/orders/$", "cartridge.shop.views.order_history",
         name="shop_order_history"),
