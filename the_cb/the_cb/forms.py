@@ -106,6 +106,7 @@ def product_add_init(self, *args, **kwargs):
     Add student ID to add to cart form
     """
     original_product_add_init(self, *args, **kwargs)
+    self.fields['quantity'] = forms.IntegerField(widget=forms.HiddenInput(), initial=1)
     if self._product:
         self.fields['personalization_id'] = forms.IntegerField(required=False)
         self.fields['personalization_id'].widget = forms.HiddenInput()

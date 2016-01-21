@@ -27,7 +27,6 @@
 	<tr>
 		<th colspan="2" class="left">{% trans "Item" %}</th>
 		<th>{% trans "Unit Price" %}</th>
-		<th class="center">{% trans "Qty" %}</th>
 		<th>{% trans "Price" %}</th>
 		<th>{% trans "Personalized" %}</th>
 		<th class="center">{% trans "Remove?" %}</th>
@@ -47,15 +46,20 @@
 		    <a href="/shop/cart/{{request.cart.id}}/items/{{item.id}}">{{ item.description }}</a>
         </td>
 		<td>{{ item.unit_price|currency }}</td>
-		<td class="quantity">{{ form.quantity }}</td>
 		<td>{{ item.total_price|currency }}</td>
-        <td><input type="checkbox" disabled {% if item.personalization %}checked{%endif%}>
+        <td><label><input type="checkbox" disabled 
+        {% if item.personalization %}checked>
+        {{item.personalization.value}}
+        {%else%}
+        >
+        {%endif%}
+        </label>
 		<td class="center">{{ form.DELETE }}</td>
 	</tr>
 	{% endwith %}
 	{% endfor %}
 	<tr class="cart-total">
-		<td colspan="6">{% my_order_totals %}</td>
+		<td colspan="5">{% my_order_totals %}</td>
 		<td>&nbsp;</td>
 	</tr>
 </table>
