@@ -60,11 +60,12 @@
 	{% endfor %}
 	<tr class="cart-total">
         <td colspan="3">
-XXX
+            {% if discount_form %}
             <form method="post" class="discount-form form-horizontal">
                 {% fields_for discount_form %}
                 <input type="submit" class="btn" style="float:right" value="{% trans 'Apply' %}">
             </form>
+            {% endif %}
         </td>
 		<td colspan="2">{% my_order_totals %}</td>
 		<td>&nbsp;</td>
@@ -80,8 +81,6 @@ XXX
 </div>
 </form>
 
-{% if discount_form %}
-{% endif %}
 
 {% with request.cart.upsell_products as upsell_products %}
 {% if upsell_products %}

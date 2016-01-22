@@ -47,6 +47,7 @@ class Personalization(models.Model):
                                      verbose_name=_("Personalization types"),
                                      related_name="personalization_selections")
     embroidery_type = models.IntegerField(choices=settings.CB_EMBROIDERY_TYPES)
+    extra_note = CharField(_("Note to Carolina Belle"), max_length=600, blank=True, null=True)
 
     objects = PersonalizationManager()
 

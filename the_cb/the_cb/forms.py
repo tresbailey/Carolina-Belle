@@ -42,6 +42,7 @@ class PersonalizationForm(forms.ModelForm):
             for f in option_fields]))
         self.fields['value'] = forms.CharField(label=_('Value'), widget=forms.HiddenInput())
         self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
+        self.fields['extra_note'] = forms.CharField(label=_('Note to Carolina Belle'), widget=forms.Textarea())
         for i, name in enumerate(option_fields):
             if name.name in option_choices:
                 field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name], widget=BootstrapSelect())
