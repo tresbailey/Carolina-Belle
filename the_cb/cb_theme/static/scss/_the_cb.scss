@@ -248,7 +248,9 @@ footer {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 5rem 0;
+  padding: 2rem 0;
+  border-top: 3px solid $cb-pink;
+  margin-top: 3rem;
 }
 
 .modal-content {

@@ -7113,7 +7113,9 @@ footer {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  padding: 5rem 0;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 3px solid #f067a6;
 
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
