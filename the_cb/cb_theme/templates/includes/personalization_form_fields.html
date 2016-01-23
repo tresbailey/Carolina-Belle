@@ -16,16 +16,16 @@
     <label class="control-label col-md-6" style="padding: 0px" for="name-value">
         Name to Use
     </label>
-    <input type="text" name="name-value" style="width: initial" value="{{ item.personalization.value }}">
+    <input type="text" name="name-value" style="width: initial" value="{{ item.personalization.value }}" {% if item.personalization %}disabled{%endif%}>
 </div>
 <div id="initials-value-fields" class="value-fields control-group">
     <label class="control-label" for="initials-first-initial">
         First, Middle, Last
     </label>
     <div>
-    <input type="text" name="initials-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
-    <input type="text" name="initials-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
-    <input type="text" name="initials-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="initials-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
+    <input type="text" name="initials-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
+    <input type="text" name="initials-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
     </div>
 </div>
 <div id="monogram-value-fields" class="value-fields control-group" style="display: flex; flex-direction: row; align-content: center">
@@ -33,9 +33,9 @@
         First, Last, Middle
     </label>
     <div>
-    <input type="text" name="monogram-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
-    <input type="text" name="monogram-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
-    <input type="text" name="monogram-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase">
+    <input type="text" name="monogram-first-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
+    <input type="text" name="monogram-last-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
+    <input type="text" name="monogram-middle-initial" size=1 maxlength=1 style="margin: .2rem; text-transform:uppercase" {% if item.personalization %}disabled{%endif%}>
     </div>
 </div>
 <div id="personalization-fields-group">

@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 from django.contrib.auth import get_user_model
+from django.template import Context
+from django.template.loader import get_template
 from django.utils.datastructures import SortedDict
 
 from cartridge.shop.templatetags.shop_tags import _order_totals
@@ -24,8 +26,8 @@ def my_order_totals(context):
     return context
 
 
-@register.as_tag
-def personalize_product_form(*args):
+@register.simple_tag(takes_context=True)
+def personalize_product_form(context, template='includes/personalization_form_fields.html', *args, **kwargs):
     """
     Returns the login form:
 
@@ -33,8 +35,11 @@ def personalize_product_form(*args):
     {{ form }}
 
     """
-    return PersonalizationForm()
-
+    form = PersonalizationForm(None, *args, **kwargs)
+    if kwargs['personalization'] and kwargs['personalization'] is not None:
+            form.load(kwargs['personalization'])
+    context["form_for_fields"] = form
+    return get_template(template).render(Context(context))
 
 @register.filter
 def name_value_options(personalization, option):

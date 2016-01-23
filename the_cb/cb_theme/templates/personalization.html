@@ -10,7 +10,7 @@
 <div id="personalization-types">
     <div class="radio">
       <label>
-        <input type="radio" name="embroidery_type" id="embroidery_none_choice" value="1" {% if item.personalization.embroidery_type == 1 %}checked{%endif%} >
+        <input type="radio" name="embroidery_type" id="embroidery_none_choice" value="1" {% if not item.personalization or item.personalization.embroidery_type == 1 %}checked{%endif%} >
         None
       </label>
     </div>
@@ -35,11 +35,10 @@
     <input type="hidden" name="basic_value" value="{{item.personalization.value}}" />
 </div>
 <div id="personalization-form-fields">
-    {% personalize_product_form as form %}
-    {% fields_for form template="includes/personalization_form_fields.html" %}
-    <div id="personalization-not-chosen" class="figure-caption" style="display: none">
-        You have selected to not personalize this item.  Please ensure that you do not wish to have your item personalized
-    </div>
+    {% personalize_product_form personalization=item.personalization template="includes/personalization_form_fields.html" %}
+</div>
+<div id="personalization-not-chosen" class="figure-caption" style="display: none">
+    You have selected to not personalize this item.  Please ensure that you do not wish to have your item personalized
 </div>
 </div>
 

@@ -25,11 +25,19 @@ if ($('nav.link-lockup').length > 1) {
 function set_personal_fields(evnt) {
     var selected = $('input:radio[name=embroidery_type]:checked').val();
     var basic_value = $("input[name=basic_value]").val();
-    switch ($('input:radio[name=embroidery_type]:checked').val()) {
+    if (evnt || basic_value) {
+        $('#personalization-fields-group').show();
+    }
+    $(".value-fields").hide();
+    $("#personalization-not-chosen").hide();
+    switch (selected) {
         case '2':
             if (basic_value) {
                 $('input:radio[name=embroidery_type]').prop('disabled', 'disabled');
             }
+            $("#name-value-fields").show();
+            $('#personalization-form-fields').show();
+            $("#personalization-not-chosen").hide();
             break;
         case '3':
             if (basic_value && !$("input[name=initials-first-initial]").val()) {
@@ -40,6 +48,9 @@ function set_personal_fields(evnt) {
                 $('input[name=initials-last-initial]').val(initials[2]);
                    
             }
+            $("#initials-value-fields").show();
+            $('#personalization-form-fields').show();
+            $("#personalization-not-chosen").hide();
             break;
         case '4':
             if (basic_value && !$("input[name=monogram-first-initial]").val()) {
@@ -49,27 +60,18 @@ function set_personal_fields(evnt) {
                 $('input[name=monogram-middle-initial]').val(initials[1]);
                 $('input[name=monogram-last-initial]').val(initials[2]);
             }
+            $("#monogram-value-fields").show();
+            $('#personalization-form-fields').show();
+            $("#personalization-not-chosen").hide();
             break;
         default:
             // No personalization
+            $('#personalization-form-fields').hide();
+            $("#personalization-not-chosen").show();
             break;
     }
-    if (evnt || basic_value) {
-        $('#personalization-fields-group').show();
-    }
-    $(".value-fields").hide();
-    $("#personalization-not-chosen").hide();
-    if (1 == selected) {
-        $('#personalization-fields-group').hide();
-        $("#personalization-not-chosen").show();
-    } else if (2 == selected) {
-        $("#name-value-fields").show();
-    } else if (3 == selected) {
-        $("#initials-value-fields").show();
-    } else if (4 == selected) {
-        $("#monogram-value-fields").show();
-    }
 }
+
 $(document).ready(function() {
     $("#add_pers").on('click', function() {
         var $form = $('<form>', {

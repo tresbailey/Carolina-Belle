@@ -32,8 +32,8 @@ class PersonalizationForm(forms.ModelForm):
         fields = ("value",)
         exclude=['embroidery_type']
     
-    def __init__(self, *args, **kwargs):
-        super(PersonalizationForm, self).__init__(*args, **kwargs)
+    def __init__(self, data, personalization=None, template="", *args, **kwargs):
+        super(PersonalizationForm, self).__init__(data)
         option_fields = Personalization.option_fields()
         option_choices = Personalization.option_choices()
         if not option_fields:
@@ -41,15 +41,15 @@ class PersonalizationForm(forms.ModelForm):
         option_names, option_labels = list(zip(*[(f.name, f.verbose_name)
             for f in option_fields]))
         self.fields['value'] = forms.CharField(label=_('Value'), widget=forms.HiddenInput())
-        self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
-        self.fields['extra_note'] = forms.CharField(label=_('Note to Carolina Belle'), widget=forms.Textarea())
         for i, name in enumerate(option_fields):
             if name.name in option_choices:
                 field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name], widget=BootstrapSelect())
                 self.fields['%s' % name] = field
+        self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
+        self.fields['extra_note'] = forms.CharField(label=_('Note to Carolina Belle'), widget=forms.Textarea())
 
     def save(self):
-        model = Personalization.objects.create(value=self.data['value'], embroidery_type=self.data['embroidery_type'])
+        model = Personalization.objects.create(value=self.data['value'], embroidery_type=self.data['embroidery_type'], extra_note=self.data['extra_note'])
         prefix = 'the_cb.Personalization.option'
         model.value = self.data['value']
         for field, value in self.data.items():
@@ -60,6 +60,22 @@ class PersonalizationForm(forms.ModelForm):
                         break
         model.save()
         return model
+
+    def load(self, personalization):
+        option_fields = Personalization.option_fields()
+        option_choices = Personalization.option_choices()
+        option_names, option_labels = list(zip(*[(f.name, f.verbose_name)
+            for f in option_fields]))
+        self.fields['extra_note'].initial = personalization.extra_note
+        lookup = dict([('option%s' % opt['type'], opt) for opt in personalization.options.values()])
+        for i, name in enumerate(option_fields):
+            if name.name in option_choices:
+                field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name], widget=BootstrapSelect())
+                if personalization and personalization is not None:
+                    field.initial = lookup.get(name.name, {})['id']
+                self.fields['%s' % name] = field
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
 
 
 def cb_recalculate_cart(request):

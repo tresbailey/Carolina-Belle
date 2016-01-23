@@ -7376,7 +7376,7 @@ button > i.fa-cart-plus {
           flex-basis: 10rem;
 }
 
-#personalize-product #personalization-form-fields .figure-caption {
+#personalize-product #personalization-not-chosen.figure-caption {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -7399,7 +7399,7 @@ button > i.fa-cart-plus {
           align-items: center;
 }
 
-#personalize-product #personalization-form-fields .figure-caption div {
+#personalize-product #personalization-not-chosen.figure-caption div {
   opacity: 1;
 }
 

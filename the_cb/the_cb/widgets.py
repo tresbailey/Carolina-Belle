@@ -11,6 +11,8 @@ class BootstrapSelect(Select):
             value = ''
         final_attrs = self.build_attrs(attrs, name=name)
         final_attrs['class'] = 'form-control'
+        if self.attrs.get('readonly', False):
+            final_attrs['disabled'] = 'disabled'
         output = [format_html('<select{}>', flatatt(final_attrs))]
         options = self.render_options(choices, [value])
         if options:

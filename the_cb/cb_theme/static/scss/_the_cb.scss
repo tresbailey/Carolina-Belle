@@ -402,8 +402,8 @@ button > i.fa-cart-plus {
     #personalization-types {
         flex-basis: 10rem;
     }
-    #personalization-form-fields {
-        .figure-caption {
+    #personalization-not-chosen {
+        &.figure-caption {
           @include graphical-link-overlay(initial, 1rem);
         }
     }
