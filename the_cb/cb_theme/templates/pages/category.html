@@ -16,6 +16,7 @@
     {% with "pages.Page."|add:page.category.title as page_name %}
     {% search_form page_name %}
     {% endwith %}
+    {% pagination_for products %}
     <form>
         <label>{% trans "Sort by" %}</label>
         <select onchange="location.href = this[this.selectedIndex].value;">
@@ -55,7 +56,6 @@
     {% endfor %}
 </div>
 
-{% pagination_for products %}
 
 {% endif %}
 

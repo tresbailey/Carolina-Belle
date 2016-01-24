@@ -329,7 +329,7 @@ footer {
 .category-controls {
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   padding: 2rem;
 }
 
@@ -412,6 +412,17 @@ button > i.fa-cart-plus {
 .form-control {
     appearance: none;
     border-radius: 0px;
+}
+
+.pagination {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  > li {
+    > a,
+    > span {
+      padding: .25rem $pagination-padding-x;
+    }
+  }
 }
 
 @media all and (max-width: 850px) {
