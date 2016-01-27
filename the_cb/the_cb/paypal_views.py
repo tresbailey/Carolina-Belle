@@ -12,7 +12,7 @@ from paypal_forms import TokenForm
 
 def cb_billship_handler(request, order_form):
     default_billship_handler(request, order_form)
-    set_personalization_cost(request, settings['CB_PERSONALIZATION_COST'])
+    set_personalization_cost(request, settings.CB_PERSONALIZATION_COST)
 
 def client_token(request, order_form, template="dropin.html", form_class=TokenForm, extra_content=None):
     if 'clientToken' not in request.session:
