@@ -6,6 +6,7 @@ from mezzanine.pages.admin import PageAdmin
 from the_cb.models import PersonalizationOption
 
 ProductAdmin.fieldsets[0][1]["fields"].extend(["desire_monogram"])
+ProductAdmin.fieldsets[0][1]["fields"].extend(["vendor_prohibited"])
 
 
 class EmbroideryAdmin(BaseTranslationModelAdmin):

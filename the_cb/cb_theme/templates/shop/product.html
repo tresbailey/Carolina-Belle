@@ -86,8 +86,10 @@
                 {% if product.desire_monogram %}
                 {% include "personalization.html" %}
                 {% endif %}
-                {% if item == None %}
+                {% if item == None and not product.vendor_prohibited %}
                 <input type="submit" class="btn btn-primary btn-lg" name="add_cart" id="add_cart" value="{% trans "Buy" %}">
+                {% elif product.vendor_prohibited %}
+                    <h4 class="modal-title">{% trans "This product cannot be purchased online.  To purchase, please use the Contact Us form at the bottom of the page" %}</h4>
                 {% endif %}
                 {% if settings.SHOP_USE_WISHLIST %}
                 <input type="submit" class="btn btn-default" name="add_wishlist" value="{% trans "Save for later" %}">

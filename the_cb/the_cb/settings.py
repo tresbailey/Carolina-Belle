@@ -205,6 +205,12 @@ EXTRA_MODEL_FIELDS = (
     ("the_cb.Personalization",),
     dict(parent_link=True, auto_created=True, primary_key=False, serialize=False, null=True),
     ),
+    (
+    "cartridge.shop.models.Product.vendor_prohibited",
+    "BooleanField",
+    ("Purchase prohibited by vendor",),
+    {"help_text": "Purchase prohibited by vendor", "default": False, "max_length": 16}
+    ),
     # Example of adding a field to *all* of Mezzanine's content types:
     #(
     #    "mezzanine.pages.models.Page.another_field",
