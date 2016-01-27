@@ -7381,10 +7381,10 @@ button > i.fa-cart-plus {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  width: 100%;
+  width: 75%;
   height: initial;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #0d024c;
   background-color: #f067a6;
   opacity: .8;

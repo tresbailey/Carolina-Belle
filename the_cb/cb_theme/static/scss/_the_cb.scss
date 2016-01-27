@@ -257,16 +257,16 @@ footer {
   display: flex;
 }
 
-@mixin graphical-link-overlay($box-height: 10rem, $box-padding: initial) {
+@mixin graphical-link-overlay($box-height: 10rem, $box-padding: initial, $font-size: 2rem, $box-width: 100%) {
   display: flex;
-  width: 100%;
+  width: $box-width;
   height: $box-height;
   background-color: $cb-pink;
   opacity: 0.8;
   color: $cb-blue;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: $font-size;
   padding: $box-padding;
   div {
     opacity: 1;
@@ -404,7 +404,7 @@ button > i.fa-cart-plus {
     }
     #personalization-not-chosen {
         &.figure-caption {
-          @include graphical-link-overlay(initial, 1rem);
+          @include graphical-link-overlay(initial, 1rem, 1rem, 75%);
         }
     }
 }
