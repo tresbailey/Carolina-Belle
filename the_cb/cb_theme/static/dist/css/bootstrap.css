@@ -7125,13 +7125,6 @@ footer {
           flex-wrap: wrap;
 }
 
-.modal-content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-}
-
 .graphical-link-item {
   display: -webkit-box;
   display: -webkit-flex;

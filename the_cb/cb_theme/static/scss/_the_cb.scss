@@ -253,10 +253,6 @@ footer {
   margin-top: 3rem;
 }
 
-.modal-content {
-  display: flex;
-}
-
 @mixin graphical-link-overlay($box-height: 10rem, $box-padding: initial, $font-size: 2rem, $box-width: 100%) {
   display: flex;
   width: $box-width;
