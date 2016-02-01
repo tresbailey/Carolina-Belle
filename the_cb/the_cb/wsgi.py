@@ -7,11 +7,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
+import os
+
 # Activate your virtual env
 activate_env=os.path.expanduser("/application/venv/bin/activate_this.py")
 execfile(activate_env, dict(__file__=activate_env))
-
-import os
 
 from django.core.wsgi import get_wsgi_application
 from mezzanine.utils.conf import real_project_name
