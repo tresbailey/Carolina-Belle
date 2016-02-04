@@ -106,6 +106,8 @@ CB_EMBROIDERY_TYPES = (
 
 CB_PERSONALIZATION_COST = 8.00
 
+ACCOUNTS_NO_USERNAME=True
+
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
 # eg for "Colour" then "Size" given the above:
