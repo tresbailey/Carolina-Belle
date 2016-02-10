@@ -46,7 +46,7 @@ class PersonalizationForm(forms.ModelForm):
                 field = forms.ChoiceField(label=option_labels[i], choices=option_choices[name.name], widget=BootstrapSelect())
                 self.fields['%s' % name] = field
         self.fields['embroidery_type'] = forms.IntegerField(widget=forms.HiddenInput())
-        self.fields['extra_note'] = forms.CharField(label=_('Note to Carolina Belle'), widget=forms.Textarea())
+        self.fields['extra_note'] = forms.CharField(label=_('Note to Carolina Belle'), widget=forms.Textarea(), required=False)
 
     def save(self):
         model = Personalization.objects.create(value=self.data['value'], embroidery_type=self.data['embroidery_type'], extra_note=self.data['extra_note'])
