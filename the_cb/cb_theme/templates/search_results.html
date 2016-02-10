@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n future mezzanine_tags %}
+{% load i18n future mezzanine_tags shop_tags %}
 
 {% block meta_title %}{% trans "Search Results" %}{% endblock %}
 {% block title %}{% trans "Search Results" %}{% endblock %}
@@ -14,24 +14,41 @@
 
 {% block main %}
 
-<p>
+<div class="col-md-9">
 {% if results.paginator.count == 0 %}
 {% blocktrans %}
 No results were found in {{ search_type }} matching your query: {{ query }}
 {% endblocktrans %}
 {% else %}
 {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+Now Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
 {% endblocktrans %}
 {% endif %}
-</p>
+</div>
 
-<div id="search-results">
+<div class="row thumbnails" id="search-results">
     {% for result in results.object_list %}
-    <h5>{{ forloop.counter0|add:results.start_index }})
-        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h5>
-    <p>{{ result.description|truncatewords_html:20|safe }}</p>
-    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+    <div class="col-sm-6 col-md-3">
+        <a href="{{ result.get_absolute_url }}" class="thumbnail catlink">
+            <div class="categories">
+                {% if result.image %}
+                <img src="{{ MEDIA_URL }}{% thumbnail result.image 100 100 %}">
+                {% else %}
+                <div class="placeholder"></div>
+                {% endif %}
+                <h6>{{ result }}</h6>
+                {% if result.has_price %}
+                    {% if result.on_sale %}
+                    <span class="old-price">{{ result.unit_price|currency }}</span>
+                    {% trans "On sale:" %}
+                    {% endif %}
+                    <span class="price">{{ result.price|currency }}</span>
+                {% else %}
+                {% trans "Coming soon" %}
+                {% endif %}
+            </div>
+        </a>
+    </div>
     {% endfor %}
 </div>
 
