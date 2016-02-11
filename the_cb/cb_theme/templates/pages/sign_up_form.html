@@ -1,6 +1,6 @@
 {% load i18n mezzanine_tags accounts_tags %}
 
-<form action="/accounts/signup/?next={{request.path}}" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+<form action="/accounts/signup?next={{request.path}}" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
