@@ -4,7 +4,7 @@ from cartridge.shop import views
 
 from copy import deepcopy
 from decimal import Decimal
-from cartridge.shop.forms import AddProductForm, OrderForm
+from cartridge.shop.forms import AddProductForm, OrderForm, ADD_PRODUCT_ERRORS
 from cartridge.shop.fields import OptionField
 from cartridge.shop.models import Cart, Order, SelectedProduct
 from cartridge.shop.utils import recalculate_cart
