@@ -50,6 +50,7 @@
     	<td align="right" valign="top">{{ item.quantity }}</td>
     	<td align="right" valign="top">{{ item.total_price|currency }}</td>
     	<td align="right" valign="top">
+            {% if item.personalization %}
             <div>
                 Type of Embroidery: {{ item.personalization.embroidery_type|embroidery_type_val }}
             </div>
@@ -61,6 +62,7 @@
                 {{item.personalization|name_value_options:option }}
                 </div>
             {% endfor %}
+            {% endif %}
         </td>
 	</tr>
 	{% endfor %}
