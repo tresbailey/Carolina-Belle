@@ -9,15 +9,6 @@ ProductAdmin.fieldsets[0][1]["fields"].extend(["desire_monogram"])
 ProductAdmin.fieldsets[0][1]["fields"].extend(["vendor_prohibited"])
 
 
-class EmbroideryAdmin(BaseTranslationModelAdmin):
-    ordering = ("type", "name")
-    list_display = ("type", "name")
-    list_display_links = ("type",)
-    list_editable = ("name",)
-    list_filter = ("type",)
-    search_fields = ("type", "name")
-    radio_fields = {"type": admin.HORIZONTAL}
-
 class PersonalizationAdmin(BaseTranslationModelAdmin):
     ordering = ('value', 'options', 'embroidery_type', 'extra_note')
     list_display = ('value', 'embroidery_type', 'extra_note')
@@ -26,5 +17,4 @@ class PersonalizationAdmin(BaseTranslationModelAdmin):
     list_filter = ('embroidery_type', )
     search_fields = ('value', 'options', 'embroidery_type', 'extra_note')
 
-#admin.site.register(PersonalizationOption, EmbroideryAdmin)
 admin.site.register(Personalization, PersonalizationAdmin)
