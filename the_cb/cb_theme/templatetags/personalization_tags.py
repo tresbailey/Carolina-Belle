@@ -52,4 +52,4 @@ def name_value_options(personalization, option):
 @register.filter
 def embroidery_type_val(personalization_type):
     types = dict(settings.CB_EMBROIDERY_TYPES)
-    return types[str(personalization_type)]
+    return types[personalization_type]

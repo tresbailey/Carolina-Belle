@@ -112,7 +112,8 @@ old_order_view = deepcopy(views.invoice)
 def order_view(request, order_id, template="shop/order_invoice.html", template_pdf="shop/order_invoice_pdf.html", extra_context=None):
     order = Order.objects.get_for_user(order_id, request)
     for item in order.items.iterator():
-        personalization = Personalization.objects.get_for_user(item.personalization.id, request)
+        if item.personalization is not None:
+            personalization = Personalization.objects.get_for_user(item.personalization.id, request)
     return old_order_view(request, order_id, template, template_pdf, extra_context)
 views.invoice = order_view
 
