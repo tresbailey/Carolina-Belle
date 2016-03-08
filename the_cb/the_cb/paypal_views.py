@@ -1,7 +1,7 @@
 import braintree
 
 from cartridge.shop.checkout import default_tax_handler, default_billship_handler
-from cartridge.shop.utils import set_tax
+from cartridge.shop.utils import set_tax, set_shipping
 from decimal import Decimal
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -59,6 +59,8 @@ def personalization_pricing(request, order_form, order):
         set_personalization_cost(request, personalized_count)
     item_total = sum([item.total_price for item in order.items.iterator()])
     set_tax(request, _("Tax"), (Decimal(request.session.get('personalization_total', '0.0')) + item_total) * Decimal(.06))
+    set_shipping(request, _("Flat rate shipping"),
+        settings.SHOP_DEFAULT_SHIPPING_VALUE)
 
 
 

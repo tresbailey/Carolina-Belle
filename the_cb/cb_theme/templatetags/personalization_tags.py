@@ -21,8 +21,8 @@ register = template.Library()
 @register.inclusion_tag("shop/includes/order_totals.html", takes_context=True)
 def my_order_totals(context):
     context = _order_totals(context)
-    context['personalization_total'] = context['request'].session.get('personalization_total', None)
-    context['order_total'] += Decimal(str(context['personalization_total']))
+    context['personalization_total'] = context['request'].session.get('personalization_total', '0.0')
+    context['order_total'] += Decimal(str(context.get('personalization_total', '0.0')))
     return context
 
 
