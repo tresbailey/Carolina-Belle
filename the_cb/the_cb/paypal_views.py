@@ -54,6 +54,7 @@ def set_personalization_cost(request, personalization_total):
 
 
 def personalization_pricing(request, order_form, order):
+    set_personalization_cost(request, 0)
     personalized_count = sum([item.personalization_price * item.quantity for item in order.items.iterator() if item.personalization and item.personalization.embroidery_type <> 1 and hasattr(item, 'personalization_price')])
     if personalized_count:
         set_personalization_cost(request, personalized_count)
