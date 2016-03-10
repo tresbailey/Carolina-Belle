@@ -195,22 +195,23 @@ def add_item_mod(self, variation, quantity):
         self.save()
     kwargs = {"sku": variation.sku, "unit_price": variation.price()}
     personalized_count = 0
-    item, created = self.items.get_or_create(**kwargs)
-    if created:
-        item.description = force_text(variation)
-        item.unit_price = variation.price()
-        item.url = variation.product.get_absolute_url()
-        try:
-            item.personalization_id = variation._personalization_id
-            if item.personalization_id is not None and "" <> item.personalization_id:
-                item.personalization_price = settings.CB_PERSONALIZATION_COST
-                personalized_count += 1
-        except AttributeError:
-            pass
-        image = variation.image
-        if image is not None:
-            item.image = force_text(image.file)
-        variation.product.actions.added_to_cart()
+    created = False
+    item = self.items.create()
+    item.sku = variation.sku
+    item.description = force_text(variation)
+    item.unit_price = variation.price()
+    item.url = variation.product.get_absolute_url()
+    try:
+        item.personalization_id = variation._personalization_id
+        if item.personalization_id is not None and "" <> item.personalization_id:
+            item.personalization_price = settings.CB_PERSONALIZATION_COST
+            personalized_count += 1
+    except AttributeError:
+        pass
+    image = variation.image
+    if image is not None:
+        item.image = force_text(image.file)
+    variation.product.actions.added_to_cart()
     item.quantity += quantity
     item.save()
 Cart.add_item = add_item_mod
