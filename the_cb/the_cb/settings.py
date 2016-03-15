@@ -345,7 +345,7 @@ ROOT_URLCONF = "%s.urls" % PROJECT_APP
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
-APPEND_SLASH=False
+APPEND_SLASH=True
 
 ################
 # APPLICATIONS #
