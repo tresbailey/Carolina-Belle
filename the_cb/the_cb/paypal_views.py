@@ -18,7 +18,7 @@ def cb_billship_handler(request, order_form):
 
 def client_token(request, order_form, template="dropin.html", form_class=TokenForm, extra_content=None):
     if 'clientToken' not in request.session:
-        braintree.Configuration.configure(settings.BRAINTREE_ENIRONMENT,
+        braintree.Configuration.configure(settings.BRAINTREE_ENVIRONMENT,
             merchant_id=settings.BRAINTREE_MERCHANT_ID,
             public_key=settings.BRAINTREE_PUBLIC_KEY,
             private_key=settings.BRAINTREE_PRIVATE_KEY)
