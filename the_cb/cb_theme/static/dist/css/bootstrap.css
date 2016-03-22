@@ -7578,6 +7578,14 @@ button > i.fa-cart-plus {
   .graphical-link-item .figure-caption div {
     opacity: 1;
   }
+  .full-page-padded .checkout-billing {
+            flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+  }
   #personalize-product {
             flex-direction: column;
 
