@@ -40,7 +40,7 @@ def send_payment(request, template="paid.html", form_class=TokenForm, extra_cont
         public_key=settings.BRAINTREE_PUBLIC_KEY,
         private_key=settings.BRAINTREE_PRIVATE_KEY)
     nonce = request.session['payment_nonce']
-    total_charge = request.cart.total_price() + Decimal(request.session.get('shipping_total', '0.0')) + Decimal(request.session.get('tax_total', '0.0'))
+    total_charge = request.cart.total_price() + Decimal(request.session.get('shipping_total', '0.0')) + Decimal(request.session.get('tax_total', '0.0')) + Decimal(str(request.session.get('personalization_total', '0.0')))
     TWOPLACES = Decimal(10) ** -2 
     result = braintree.Transaction.sale({
         "amount": str(total_charge.quantize(TWOPLACES)),
