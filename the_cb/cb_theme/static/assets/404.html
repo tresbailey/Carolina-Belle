@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+{% load pages_tags mezzanine_tags i18n future staticfiles accounts_tags %}
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>{% block meta_title %}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+    {% ifinstalled mezzanine.blog %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+    {% endifinstalled %}
+
+    {% compress css %}
+        <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+        <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+        {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+        {% endif %}
+        {% ifinstalled cartridge.shop %}
+        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+        {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+        {% endif %}
+        {% endifinstalled %}
+        {% block extra_css %}{% endblock %}
+    {% endcompress %}
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    {% compress js %}
+    <script src="{% static "dist/js/jquery.js" %}"></script>
+    <script src="{% static "dist/js/bootstrap.js" %}"></script>
+    {% block extra_js %}{% endblock %}
+    {% endcompress %}
+    <!--[if lt IE 9]>
+    <script src="{% static "js/html5shiv.js" %}"></script>
+    <![endif]-->
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+{# This allows for a sticky footer while having a fixed navbar #}
+<div id="wrap">
+
+<nav class="navbar-default navbar-fixed-top" role="navigation">
+    <div class="main-lockup">
+        <div class="lockup-logo">
+            <a href="/">
+                <img src="{% static "assets/LogoMain.png" %}" />
+            </a>
+        </div>
+    </div>
+
+</nav>
+
+<div class="container-fluid primary-content">
+    <div class="row">
+        <div class="col-md-12">
+            Currently under construction
+        </div>
+
+    </div>
+</div>
+</div><!-- /wrap -->
+
+<footer>
+    <div class="footer-lockup">
+        <label>
+        <p>&copy; 2016 - Created by Tresback Solutions</p>
+        </label>
+    </div>
+</footer>
+
+</body>
+</html>

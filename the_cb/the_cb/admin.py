@@ -1,4 +1,4 @@
-from cartridge.shop.admin import ProductAdmin
+from cartridge.shop.admin import ProductAdmin, OrderAdmin
 from copy import deepcopy
 from django.contrib import admin
 from mezzanine.core.admin import DisplayableAdmin, BaseTranslationModelAdmin
@@ -7,6 +7,7 @@ from the_cb.models import PersonalizationOption, Personalization
 
 ProductAdmin.fieldsets[0][1]["fields"].extend(["desire_monogram"])
 ProductAdmin.fieldsets[0][1]["fields"].extend(["vendor_prohibited"])
+OrderAdmin.fieldsets[2][1]["fields"] = OrderAdmin.fieldsets[2][1]["fields"] + ("personalization_pricing",)
 
 
 class PersonalizationAdmin(BaseTranslationModelAdmin):

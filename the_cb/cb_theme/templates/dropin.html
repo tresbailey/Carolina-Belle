@@ -3,6 +3,7 @@
   {% csrf_token %}
   <div id="payment-grouping">
       <div id="payment-form"></div>
+      <div id="paypal-container"></div>
       <input type="hidden" name="payment_method_nonce">
       <input type="submit" value="Pay With Card">
   </div>
@@ -17,6 +18,9 @@ var clientToken = "{{ request.session.clientToken }}";
 
 braintree.setup(clientToken, "dropin", {
   container: "payment-form",
+  paypal: {
+    container: "paypal-container",
+  },
   onPaymentMethodReceived: function (obj) {
     // Do some logic in here.
     // When you're ready to submit the form:

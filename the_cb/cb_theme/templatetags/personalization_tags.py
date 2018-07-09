@@ -13,6 +13,7 @@ from mezzanine.accounts import (get_profile_form, get_profile_user_fieldname,
                                 get_profile_for_user, ProfileNotConfigured)
 from the_cb.forms import PersonalizationForm
 from the_cb.models import Personalization
+from the_cb.paypal_views import personalization_pricing
 
 
 register = template.Library()
@@ -20,8 +21,12 @@ register = template.Library()
 
 @register.inclusion_tag("shop/includes/order_totals.html", takes_context=True)
 def my_order_totals(context):
+    import pdb
+    pdb.set_trace()
     context = _order_totals(context)
-    context['personalization_total'] = context['request'].session.get('personalization_total', '0.0')
+    request = context['request']
+    personalization_pricing(request, None, request.cart)
+    context['personalization_total'] = request.session.get('personalization_total', '0.0')
     context['order_total'] += Decimal(str(context.get('personalization_total', '0.0')))
     return context
 
